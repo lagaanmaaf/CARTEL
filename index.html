@@ -616,8 +616,6 @@
         }
         .cancel-order-btn:hover { background: var(--accent2); color: #fff; }
         .cancel-order-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        
-        /* ---- Listed Products Tab Styles ---- */ 
         .lp-search-bar { display: flex; gap: 10px; margin-bottom: 18px; }
         .lp-search-bar input {
             flex: 1; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm);
@@ -655,8 +653,6 @@
         .lp-btn.danger:hover { border-color: var(--accent2); color: var(--accent2); }
         .lp-btn.oos-active { background: rgba(255,101,132,0.12); border-color: var(--accent2); color: var(--accent2); }
         .lp-btn.oos-active:hover { background: var(--accent2); color: #fff; }
-        
-        /* Edit inline panel */ 
         .lp-edit-panel { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
         .lp-edit-panel.open { display: block; }
         .lp-edit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -674,19 +670,15 @@
             font-weight: 600; cursor: pointer; margin-top: 10px; transition: opacity 0.2s;
         }
         .lp-save-btn:hover { opacity: 0.9; }
-
-        /* Change password tab */ 
         .pwd-section { max-width: 400px; margin: 0 auto; }
         .pwd-section h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; color: var(--text); margin-bottom: 18px; }
         .pwd-msg { font-size: 0.82rem; padding: 10px 14px; border-radius: 8px; margin-top: 10px; display: none; }
         .pwd-msg.success { background: rgba(67,224,184,0.12); color: var(--accent3); display: block; }
         .pwd-msg.error { background: rgba(255,101,132,0.12); color: var(--accent2); display: block; }
-
         footer { border-top: 1px solid var(--border); padding: 24px 20px; text-align: center; color: var(--muted); font-size: 0.8rem; line-height: 1.8; }
         footer a { color: var(--accent); text-decoration: none; }
         .admin-link { opacity: 0.4; font-size: 0.7rem; text-decoration: none; color: var(--text); display: inline-block; margin-top: 10px; cursor: pointer; transition: opacity 0.2s; }
         .admin-link:hover { opacity: 1; }
-
         @media (max-width: 600px) {
             .hero-title { font-size: 2rem; }
             .product-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -700,7 +692,7 @@
             .admin-tabs { gap: 4px; }
             .admin-tab { font-size: 0.78rem; padding: 5px 8px; }
         }
-        @media (max-width: 380px) { .product-grid { grid-template-columns: 1fr; } } 
+        @media (max-width: 380px) { .product-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -729,7 +721,7 @@
     </div>
 
     <a class="wa-float" href="https://wa.me/919068582274" target="_blank" aria-label="WhatsApp">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Chat on WhatsApp
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     </a>
 
     <!-- Cart Drawer -->
@@ -830,11 +822,7 @@
                     <button class="admin-tab" id="tabBtnListedProducts">📋 Listed Products</button>
                     <button class="admin-tab" id="tabBtnPassword">🔑 Password</button>
                 </div>
-
-                <!-- Orders View -->
                 <div id="adminOrdersList"></div>
-
-                <!-- Add Product View -->
                 <div id="adminAddProductPanel" style="display:none;">
                     <div class="order-history-card" style="max-width:600px;margin:0 auto;">
                         <h3 style="margin-bottom:15px;font-family:'Syne',sans-serif;font-size:1.1rem;color:var(--text);">Add New Product</h3>
@@ -863,16 +851,12 @@
                         </form>
                     </div>
                 </div>
-
-                <!-- Listed Products View -->
                 <div id="adminListedProductsPanel" style="display:none;">
                     <div class="lp-search-bar">
                         <input type="text" id="lpSearchInput" placeholder="Search by name or Product ID…">
                     </div>
                     <div id="lpProductList"></div>
                 </div>
-
-                <!-- Change Password View -->
                 <div id="adminPasswordPanel" style="display:none;">
                     <div class="pwd-section">
                         <h3>Change Admin Password</h3>
@@ -905,23 +889,7 @@
 
     <script>
         // ============================================================
-        // 🚀🚀 YOUR FIREBASE CONFIGURATION GOES HERE 🚀🚀
-        // ============================================================
-        // To make passwords, products, and orders sync across ALL devices on GitHub Pages,
-        // you MUST replace the word 'null' below with your Firebase config object.
-        // Copy the config from your Firebase console, it looks like the commented out example.
-        
-        const MY_FIREBASE_CONFIG = {
-            apiKey: "AIzaSyAgyOQaVB-F2zXgESa2jH3bfJpwmITjUdk",
-            authDomain: "shopify-bf97c.firebaseapp.com",
-            databaseURL: "https://shopify-bf97c-default-rtdb.firebaseio.com",
-            projectId: "shopify-bf97c",
-            storageBucket: "shopify-bf97c.firebasestorage.app",
-            messagingSenderId: "318119676871",
-            appId: "1:318119676871:web:82beae07bb607606ea67e2",
-            measurementId: "G-B28RCDZGZ8"
-        };
-        
+        // SHOPIFY — MAIN SCRIPT
         // ============================================================
 
         // ---- Unique ID generator ----
@@ -954,39 +922,25 @@
         // ---- Default Products ----
         const RAW_DEFAULT = [
             { _key: 'default-1', name: "Apple iPhone 17 Pro Max (Deep Blue, 512 GB)", price: 130000, category: "Smartphones", image: "https://i.ibb.co/xqjdTK2h/iphone.webp" },
-            { _key: 'default-2', name: "boAt 10000 mAh 22.5W Compact Power Bank (Martian Red)",price: 7000, category: "Accessories", image: "https://i.ibb.co/cchBJG1q/boat-powerbank.webp" },
+            { _key: 'default-2', name: "boAt 10000 mAh 22.5W Compact Power Bank (Martian Red)", price: 7000, category: "Accessories", image: "https://i.ibb.co/cchBJG1q/boat-powerbank.webp" },
             { _key: 'default-3', name: "pTron Flick M1 Ambidextrous Optical Wireless Mouse (Black)", price: 400, category: "Accessories", image: "https://i.ibb.co/d0SCvX13/Ptron-Mouse.webp" }
         ];
 
         let defaultUIDMap = {};
         try { defaultUIDMap = JSON.parse(localStorage.getItem('shopify_default_uids') || '{}'); } catch(e) {}
-
         const hasOldFormat = Object.values(defaultUIDMap).some(v => String(v).startsWith('PROD-'));
-        if (hasOldFormat) defaultUIDMap = {};
-
-        RAW_DEFAULT.forEach(p => {
-            if (!defaultUIDMap[p._key]) defaultUIDMap[p._key] = genUID();
-        });
+        if (hasOldFormat) { defaultUIDMap = {}; }
+        RAW_DEFAULT.forEach(p => { if (!defaultUIDMap[p._key]) defaultUIDMap[p._key] = genUID(); });
         localStorage.setItem('shopify_default_uids', JSON.stringify(defaultUIDMap));
 
         const DEFAULT_PRODUCTS = RAW_DEFAULT.map(p => ({
-            uid: defaultUIDMap[p._key],
-            isDefault: true,
-            outOfStock: false,
-            ...p
+            uid: defaultUIDMap[p._key], isDefault: true, outOfStock: false, ...p
         }));
 
-        // ---- Local storage fallback state ----
         let dynamicProducts = [];
         try { dynamicProducts = JSON.parse(localStorage.getItem('shopify_products_local') || '[]'); } catch(e) {}
-
         let dynMigrated = false;
-        dynamicProducts.forEach(p => {
-            if (!p.uid || String(p.uid).startsWith('PROD-')) {
-                p.uid = genUID();
-                dynMigrated = true;
-            }
-        });
+        dynamicProducts.forEach(p => { if (!p.uid || String(p.uid).startsWith('PROD-')) { p.uid = genUID(); dynMigrated = true; } });
         if (dynMigrated) localStorage.setItem('shopify_products_local', JSON.stringify(dynamicProducts));
 
         let oosMap = {};
@@ -994,80 +948,62 @@
 
         function saveOOSMap() { localStorage.setItem('shopify_oos_map', JSON.stringify(oosMap)); }
         function saveDynamic() { localStorage.setItem('shopify_products_local', JSON.stringify(dynamicProducts)); }
-
         function getAllProducts() {
-            // Check if any default products were edited and saved as dynamic overrides globally
-            const dynamicUids = new Set(dynamicProducts.map(p => p.uid));
-            const activeDefaults = DEFAULT_PRODUCTS.filter(p => !dynamicUids.has(p.uid));
-
-            const all = [
-                ...activeDefaults.map(p => ({ ...p, outOfStock: oosMap[p.uid] === true })),
+            return [
+                ...DEFAULT_PRODUCTS.map(p => ({ ...p, outOfStock: oosMap[p.uid] === true })),
                 ...dynamicProducts.map(p => ({ ...p, outOfStock: oosMap[p.uid] === true }))
             ];
-            return all;
         }
 
-        // ---- Admin password ----
         let ADMIN_PASS = localStorage.getItem('shopify_admin_pass') || 'admin123';
 
-        // ---- Cart ----
         let cart = [];
         try { cart = JSON.parse(localStorage.getItem('shopify_cart') || '[]'); } catch(e) {}
-
         function saveCart() { localStorage.setItem('shopify_cart', JSON.stringify(cart)); }
         function getCartItem(uid) { return cart.find(i => i.uid === uid); }
         function fmt(n) { return '₹' + Number(n).toLocaleString('en-IN'); }
         function getTotal() { return cart.reduce((s, i) => s + i.price * i.qty, 0); }
         function getTotalQty() { return cart.reduce((s, i) => s + i.qty, 0); }
 
-        // ---- Cloud / Offline orders ----
         let cloudOrders = [];
         let isOfflineMode = true;
         let currentUser = { uid: 'local-user' };
         try { cloudOrders = JSON.parse(localStorage.getItem('shopify_orders_local') || '[]'); } catch(e) {}
-
         function saveLocalOrders() { localStorage.setItem('shopify_orders_local', JSON.stringify(cloudOrders)); }
 
-        // ---- FIREBASE INIT ----
+        // ---- Firebase Initialization (hardcoded config) ----
         (async () => {
             try {
-                let fbConfigStr = (typeof __firebase_config !== 'undefined' && __firebase_config) ? __firebase_config : null;
-                
-                // Use user's manual config if testing on GitHub pages!
-                if (!fbConfigStr && MY_FIREBASE_CONFIG) {
-                    fbConfigStr = JSON.stringify(MY_FIREBASE_CONFIG);
-                }
+                const firebaseConfig = {
+                    apiKey: "AIzaSyAgyOQaVB-F2zXgESa2jH3bfJpwmITjUdk",
+                    authDomain: "shopify-bf97c.firebaseapp.com",
+                    databaseURL: "https://shopify-bf97c-default-rtdb.firebaseio.com",
+                    projectId: "shopify-bf97c",
+                    storageBucket: "shopify-bf97c.firebasestorage.app",
+                    messagingSenderId: "318119676871",
+                    appId: "1:318119676871:web:82beae07bb607606ea67e2",
+                    measurementId: "G-B28RCDZGZ8"
+                };
 
-                if (!fbConfigStr || fbConfigStr.trim() === '' || fbConfigStr === 'null') {
-                    throw new Error('No config provided. Switching to offline mode.');
-                }
+                // Use the Firebase appId as the Firestore path identifier
+                const appId = firebaseConfig.appId;
 
                 const { initializeApp } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js");
-                const { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js");
+                const { getAuth, signInAnonymously, onAuthStateChanged } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js");
                 const { getFirestore, collection, addDoc, updateDoc, doc, onSnapshot, setDoc } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js");
 
-                const fbConfigObj = JSON.parse(fbConfigStr);
-                const app = initializeApp(fbConfigObj);
+                const app = initializeApp(firebaseConfig);
                 const auth = getAuth(app);
                 const db = getFirestore(app);
-                
-                // Fallback App ID extraction
-                const appId = (typeof __app_id !== 'undefined') ? __app_id : (fbConfigObj.projectId || 'default-app-id');
                 isOfflineMode = false;
 
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
+                await signInAnonymously(auth);
 
                 onAuthStateChanged(auth, user => {
                     currentUser = user;
                     if (!user) return;
 
-                    window._fbHelpers = { db, appId, addDoc, updateDoc, doc, collection, setDoc };
-
-                    // 1. Password listener (Global Sync)
+                    // Listen for cloud admin password
                     onSnapshot(doc(db, 'artifacts', appId, 'public', 'data', 'config', 'adminSettings'), snap => {
                         if (snap.exists() && snap.data().password) {
                             ADMIN_PASS = snap.data().password;
@@ -1075,36 +1011,27 @@
                         }
                     });
 
-                    // 2. Out of Stock listener (Global Sync)
-                    onSnapshot(doc(db, 'artifacts', appId, 'public', 'data', 'config', 'productStates'), snap => {
-                        if (snap.exists() && snap.data().oosMap) {
-                            oosMap = snap.data().oosMap;
-                            saveOOSMap();
-                            buildFilters();
-                            renderProducts();
-                            if (document.getElementById('adminListedProductsPanel')?.style.display !== 'none') renderListedProducts();
-                        }
-                    });
+                    window._fbHelpers = { db, appId, addDoc, updateDoc, doc, collection, setDoc };
 
-                    // 3. Orders listener (Global Sync)
+                    // Orders real-time listener
                     onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'orders'), snap => {
                         cloudOrders = snap.docs.map(d => ({ fbId: d.id, ...d.data() }));
                         cloudOrders.sort((a, b) => b.timestamp - a.timestamp);
-                        if (document.getElementById('ordersModalOverlay')?.classList.contains('open')) renderOrders();
+                        if (document.getElementById('ordersModalOverlay').classList.contains('open')) renderOrders();
                         const ao = document.getElementById('adminOrdersList');
-                        if (document.getElementById('adminModalOverlay')?.classList.contains('open') && ao && ao.style.display !== 'none') renderAdminOrders();
+                        if (document.getElementById('adminModalOverlay').classList.contains('open') && ao && ao.style.display !== 'none') renderAdminOrders();
                     });
 
-                    // 4. Products listener (Global Sync)
+                    // Products real-time listener
                     onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'products'), snap => {
                         dynamicProducts = snap.docs.map(d => ({ fbId: d.id, ...d.data() }));
                         buildFilters();
                         renderProducts();
-                        if (document.getElementById('adminListedProductsPanel')?.style.display !== 'none') renderListedProducts();
+                        if (document.getElementById('adminListedProductsPanel').style.display !== 'none') renderListedProducts();
                     });
                 });
             } catch (e) {
-                console.warn(e.message);
+                console.warn('Firebase not available, running in offline mode:', e.message);
                 isOfflineMode = true;
             }
         })();
@@ -1129,7 +1056,7 @@
         function buildFilters() {
             const PRODUCTS = getAllProducts();
             const cats = ['All', ...new Set(PRODUCTS.map(p => p.category))];
-            document.getElementById('filterWrap').innerHTML = cats.map(c => 
+            document.getElementById('filterWrap').innerHTML = cats.map(c =>
                 `<button class="filter-btn ${c === activeFilter ? 'active' : ''}">${c}</button>`
             ).join('');
             document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -1146,8 +1073,6 @@
             const PRODUCTS = getAllProducts();
             const list = activeFilter === 'All' ? PRODUCTS : PRODUCTS.filter(p => p.category === activeFilter);
             const grid = document.getElementById('productGrid');
-            if(!grid) return;
-            
             grid.innerHTML = list.map((p, i) => `
                 <div class="product-card ${p.outOfStock ? 'out-of-stock' : ''}" style="animation-delay:${i * 0.07}s">
                     <div class="product-img-wrap">
@@ -1163,15 +1088,13 @@
                         ${p.description ? `<div class="product-desc">${escHtml(p.description)}</div>` : ''}
                         <div class="product-footer">
                             <div class="product-price">${fmt(p.price)}<span> /unit</span></div>
-                            ${p.outOfStock 
+                            ${p.outOfStock
                                 ? `<button class="add-btn disabled" disabled>Out of Stock</button>`
                                 : `<button class="add-btn" data-adduid="${p.uid}">+ Add</button>`
                             }
                         </div>
                     </div>
                 </div>`).join('');
-            
-            // Attach add-to-cart listeners
             document.querySelectorAll('[data-adduid]').forEach(btn => {
                 btn.addEventListener('click', () => addToCart(btn.dataset.adduid));
             });
@@ -1180,15 +1103,10 @@
         function updateCartUI() {
             const qty = getTotalQty();
             const el = document.getElementById('cartCount');
-            if (el) {
-                el.textContent = qty;
-                el.classList.toggle('show', qty > 0);
-            }
-            const gt = document.getElementById('grandTotal');
-            if(gt) gt.textContent = fmt(getTotal());
-            
-            const cf = document.getElementById('cartFooter');
-            if(cf) cf.style.display = qty > 0 ? 'block' : 'none';
+            el.textContent = qty;
+            el.classList.toggle('show', qty > 0);
+            document.getElementById('grandTotal').textContent = fmt(getTotal());
+            document.getElementById('cartFooter').style.display = qty > 0 ? 'block' : 'none';
         }
 
         // ============================================================
@@ -1199,23 +1117,13 @@
             const p = PRODUCTS.find(x => x.uid === uid);
             if (!p || p.outOfStock) return;
             const ex = getCartItem(uid);
-            if (ex) {
-                ex.qty++;
-            } else {
-                cart.push({ uid, name: p.name, price: p.price, image: p.image, qty: 1 });
-            }
+            if (ex) { ex.qty++; } else { cart.push({ uid, name: p.name, price: p.price, image: p.image, qty: 1 }); }
             saveCart();
             updateCartUI();
-
             const btn = document.getElementById('cartHeaderBtn');
-            if (btn) {
-                btn.style.borderColor = 'var(--accent)';
-                btn.style.transform = 'scale(1.05)';
-                setTimeout(() => {
-                    btn.style.borderColor = '';
-                    btn.style.transform = '';
-                }, 300);
-            }
+            btn.style.borderColor = 'var(--accent)';
+            btn.style.transform = 'scale(1.05)';
+            setTimeout(() => { btn.style.borderColor = ''; btn.style.transform = ''; }, 300);
         }
 
         function changeQty(uid, delta) {
@@ -1223,22 +1131,16 @@
             if (!item) return;
             item.qty += delta;
             if (item.qty <= 0) cart = cart.filter(i => i.uid !== uid);
-            saveCart();
-            updateCartUI();
-            renderCartDrawer();
+            saveCart(); updateCartUI(); renderCartDrawer();
         }
 
         function removeItem(uid) {
             cart = cart.filter(i => i.uid !== uid);
-            saveCart();
-            updateCartUI();
-            renderCartDrawer();
+            saveCart(); updateCartUI(); renderCartDrawer();
         }
 
         function renderCartDrawer() {
             const body = document.getElementById('cartBody');
-            if (!body) return;
-            
             if (!cart.length) {
                 body.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">🛒</div><p>Your cart is empty.<br>Add some products!</p></div>`;
                 return;
@@ -1258,7 +1160,6 @@
                     </div>
                     <button class="remove-btn" data-removeuid="${item.uid}">✕</button>
                 </div>`).join('');
-            
             body.querySelectorAll('[data-qtyuid]').forEach(btn => {
                 btn.addEventListener('click', () => changeQty(btn.dataset.qtyuid, parseInt(btn.dataset.delta)));
             });
@@ -1269,14 +1170,14 @@
 
         function openCart() {
             renderCartDrawer();
-            document.getElementById('cartDrawer')?.classList.add('open');
-            document.getElementById('drawerOverlay')?.classList.add('open');
+            document.getElementById('cartDrawer').classList.add('open');
+            document.getElementById('drawerOverlay').classList.add('open');
             document.body.style.overflow = 'hidden';
         }
 
         function closeCart() {
-            document.getElementById('cartDrawer')?.classList.remove('open');
-            document.getElementById('drawerOverlay')?.classList.remove('open');
+            document.getElementById('cartDrawer').classList.remove('open');
+            document.getElementById('drawerOverlay').classList.remove('open');
             document.body.style.overflow = '';
         }
 
@@ -1292,31 +1193,18 @@
                 summaryText += `${item.name} x${item.qty} - ${fmt(item.price * item.qty)}\n`;
             });
             summaryHTML += `<div class="order-line total"><span>Grand Total</span><span>${fmt(getTotal())}</span></div>`;
-            
-            const os = document.getElementById('orderSummary');
-            if (os) os.innerHTML = summaryHTML;
-            
-            const hos = document.getElementById('hiddenOrderSummary');
-            if (hos) hos.value = summaryText;
-            
-            const ht = document.getElementById('hiddenTotal');
-            if(ht) ht.value = fmt(getTotal());
-            
-            const es = document.getElementById('emailSubject');
-            if(es) es.value = `New Order - Shopify (${fmt(getTotal())})`;
-            
-            const cv = document.getElementById('checkoutView');
-            if(cv) cv.style.display = '';
-            
-            const sv = document.getElementById('successView');
-            if(sv) sv.style.display = 'none';
-            
-            document.getElementById('modalOverlay')?.classList.add('open');
+            document.getElementById('orderSummary').innerHTML = summaryHTML;
+            document.getElementById('hiddenOrderSummary').value = summaryText;
+            document.getElementById('hiddenTotal').value = fmt(getTotal());
+            document.getElementById('emailSubject').value = `New Order - Shopify (${fmt(getTotal())})`;
+            document.getElementById('checkoutView').style.display = '';
+            document.getElementById('successView').style.display = 'none';
+            document.getElementById('modalOverlay').classList.add('open');
             document.body.style.overflow = 'hidden';
         }
 
         function closeCheckout() {
-            document.getElementById('modalOverlay')?.classList.remove('open');
+            document.getElementById('modalOverlay').classList.remove('open');
             document.body.style.overflow = '';
         }
 
@@ -1330,23 +1218,12 @@
             return 'status-cancelled';
         }
 
-        function openOrders() {
-            renderOrders();
-            document.getElementById('ordersModalOverlay')?.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeOrders() {
-            document.getElementById('ordersModalOverlay')?.classList.remove('open');
-            document.body.style.overflow = '';
-        }
+        function openOrders() { renderOrders(); document.getElementById('ordersModalOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; }
+        function closeOrders() { document.getElementById('ordersModalOverlay').classList.remove('open'); document.body.style.overflow = ''; }
 
         function renderOrders() {
             const body = document.getElementById('ordersBody');
-            if(!body) return;
-            // Offline mode shows all local orders. If online, it filters by the user.
             const myOrders = isOfflineMode ? cloudOrders : cloudOrders.filter(o => o.creatorId === (currentUser ? currentUser.uid : null));
-            
             if (!myOrders.length) {
                 body.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">📦</div><p>No past orders found.</p></div>`;
                 return;
@@ -1368,7 +1245,6 @@
                         ${isActive ? `<button class="cancel-order-btn" data-fbid="${order.fbId || ''}" data-orderid="${order.orderId}" data-cname="${escAttr(order.customerName)}" data-cphone="${escAttr(order.customerPhone)}">Cancel Order</button>` : ''}
                     </div>`;
             }).join('');
-
             body.querySelectorAll('.cancel-order-btn').forEach(btn => {
                 btn.addEventListener('click', () => cancelOrder(btn.dataset.fbid, btn.dataset.orderid, btn.dataset.cname, btn.dataset.cphone));
             });
@@ -1377,30 +1253,22 @@
         async function cancelOrder(fbId, orderId, customerName, customerPhone) {
             const ok = await customConfirm("Are you sure you want to cancel this order?");
             if (!ok) return;
-
             if (isOfflineMode) {
                 const ord = cloudOrders.find(o => o.orderId === orderId);
                 if (ord) ord.status = 'Cancelled';
-                saveLocalOrders();
-                renderOrders();
-                if (document.getElementById('adminModalOverlay')?.classList.contains('open')) renderAdminOrders();
+                saveLocalOrders(); renderOrders();
+                if (document.getElementById('adminModalOverlay').classList.contains('open')) renderAdminOrders();
             } else {
                 try {
                     const { db, appId, updateDoc, doc } = window._fbHelpers;
                     await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'orders', fbId), { status: 'Cancelled' });
-                } catch (e) {
-                    alert('Failed to cancel. Check connection.');
-                    return;
-                }
+                } catch (e) { alert('Failed to cancel. Check connection.'); return; }
             }
-
             try {
                 const fd = new FormData();
                 fd.append('_subject', `CANCELLED ORDER - ${orderId}`);
-                fd.append('Order ID', orderId);
-                fd.append('Customer', customerName);
-                fd.append('Phone', customerPhone);
-                fd.append('Status', 'Customer requested cancellation.');
+                fd.append('Order ID', orderId); fd.append('Customer', customerName);
+                fd.append('Phone', customerPhone); fd.append('Status', 'Customer requested cancellation.');
                 await fetch('https://formspree.io/f/xeeplold', { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
             } catch(e) {}
         }
@@ -1411,31 +1279,22 @@
         function openAdmin() {
             const pass = prompt('Enter Admin Passcode:');
             if (pass === null) return;
-
             if (pass === ADMIN_PASS) {
                 switchAdminTab('orders');
-                document.getElementById('adminModalOverlay')?.classList.add('open');
+                document.getElementById('adminModalOverlay').classList.add('open');
                 document.body.style.overflow = 'hidden';
-            } else {
-                alert('Incorrect passcode.');
-            }
+            } else { alert('Incorrect passcode.'); }
         }
 
-        function closeAdmin() {
-            document.getElementById('adminModalOverlay')?.classList.remove('open');
-            document.body.style.overflow = '';
-        }
+        function closeAdmin() { document.getElementById('adminModalOverlay').classList.remove('open'); document.body.style.overflow = ''; }
 
         function switchAdminTab(tab) {
             const tabs = { orders: 'tabBtnOrders', addProduct: 'tabBtnAddProduct', listedProducts: 'tabBtnListedProducts', password: 'tabBtnPassword' };
             const panels = { orders: 'adminOrdersList', addProduct: 'adminAddProductPanel', listedProducts: 'adminListedProductsPanel', password: 'adminPasswordPanel' };
-
             Object.keys(tabs).forEach(t => {
-                document.getElementById(tabs[t])?.classList.toggle('active', t === tab);
-                const panel = document.getElementById(panels[t]);
-                if(panel) panel.style.display = t === tab ? 'block' : 'none';
+                document.getElementById(tabs[t]).classList.toggle('active', t === tab);
+                document.getElementById(panels[t]).style.display = t === tab ? 'block' : 'none';
             });
-
             if (tab === 'orders') renderAdminOrders();
             if (tab === 'listedProducts') renderListedProducts();
             if (tab === 'password') clearPwdFields();
@@ -1443,14 +1302,10 @@
 
         function renderAdminOrders() {
             const list = document.getElementById('adminOrdersList');
-            if(!list) return;
-            
             if (!cloudOrders.length) {
                 list.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">📂</div><p>No orders in the database.</p></div>`;
                 return;
             }
-
-            // Admins view all orders directly from the global array!
             list.innerHTML = cloudOrders.map(order => {
                 const itemsHtml = order.items.map(i => `• ${escHtml(i.name)} (x${i.qty})`).join('<br>');
                 const isCancelled = order.status === 'Cancelled';
@@ -1483,7 +1338,6 @@
                         </div>
                     </div>`;
             }).join('');
-
             list.querySelectorAll('[data-statusfbid]').forEach(sel => {
                 sel.addEventListener('change', () => updateOrderStatus(sel.dataset.statusfbid, sel.dataset.statusorderid, sel.value, sel));
             });
@@ -1491,19 +1345,13 @@
 
         async function updateOrderStatus(fbId, orderId, newStatus, selectEl) {
             const ord = cloudOrders.find(o => (o.fbId || o.orderId) === fbId);
-            
             if (newStatus === 'Cancelled') {
                 const ok = await customConfirm("Permanently cancel this order? This cannot be undone.");
-                if (!ok) {
-                    if (ord) selectEl.value = ord.status;
-                    return;
-                }
+                if (!ok) { if (ord) selectEl.value = ord.status; return; }
             }
-
             if (isOfflineMode) {
                 if (ord) ord.status = newStatus;
-                saveLocalOrders();
-                renderAdminOrders();
+                saveLocalOrders(); renderAdminOrders();
             } else {
                 try {
                     const { db, appId, updateDoc, doc } = window._fbHelpers;
@@ -1511,86 +1359,57 @@
                     if (newStatus === 'Cancelled') selectEl.disabled = true;
                 } catch (e) {
                     alert('Error updating database.');
-                    if (ord) selectEl.value = ord.status;
-                    return;
+                    if (ord) selectEl.value = ord.status; return;
                 }
             }
-
             if (newStatus === 'Cancelled' && ord) {
                 try {
                     const fd = new FormData();
                     fd.append('_subject', `CANCELLED ORDER (BY ADMIN) - ${ord.orderId}`);
-                    fd.append('Order ID', ord.orderId);
-                    fd.append('Customer', ord.customerName);
-                    fd.append('Phone', ord.customerPhone);
-                    fd.append('Status', 'Admin cancelled this order.');
+                    fd.append('Order ID', ord.orderId); fd.append('Customer', ord.customerName);
+                    fd.append('Phone', ord.customerPhone); fd.append('Status', 'Admin cancelled this order.');
                     await fetch('https://formspree.io/f/xeeplold', { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
                 } catch(e) {}
             }
         }
 
         // ---- ADD PRODUCT ----
-        document.getElementById('addProductForm')?.addEventListener('submit', async function(e) {
+        document.getElementById('addProductForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = document.getElementById('addProductBtn');
-            if (btn) {
-                btn.disabled = true;
-                btn.textContent = 'Adding…';
-            }
-
+            btn.disabled = true; btn.textContent = 'Adding…';
             const newProd = {
-                uid: genUID(),
-                name: this.name.value,
-                price: parseFloat(this.price.value),
-                category: this.category.value,
-                description: this.description.value || '',
-                image: this.image.value,
-                outOfStock: false,
-                timestamp: Date.now()
+                uid: genUID(), name: this.name.value, price: parseFloat(this.price.value),
+                category: this.category.value, description: this.description.value || '',
+                image: this.image.value, outOfStock: false, timestamp: Date.now()
             };
-
             try {
                 if (isOfflineMode || !window._fbHelpers) {
-                    dynamicProducts.push(newProd);
-                    saveDynamic();
-                    buildFilters();
-                    renderProducts();
+                    dynamicProducts.push(newProd); saveDynamic(); buildFilters(); renderProducts();
                 } else {
                     const { db, appId, addDoc, collection } = window._fbHelpers;
                     await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'products'), newProd);
                 }
-                this.reset();
-                alert('Product added successfully!');
-            } catch(err) {
-                alert('Failed to add product.');
-            }
-            
-            if (btn) {
-                btn.disabled = false;
-                btn.textContent = '✦ Add Product to Store';
-            }
+                this.reset(); alert('Product added successfully!');
+            } catch(err) { alert('Failed to add product.'); }
+            btn.disabled = false; btn.textContent = '✦ Add Product to Store';
         });
 
         // ---- LISTED PRODUCTS ----
         let lpSearchQuery = '';
-        document.getElementById('lpSearchInput')?.addEventListener('input', function() {
-            lpSearchQuery = this.value.trim().toLowerCase();
-            renderListedProducts();
+        document.getElementById('lpSearchInput').addEventListener('input', function() {
+            lpSearchQuery = this.value.trim().toLowerCase(); renderListedProducts();
         });
 
         function renderListedProducts() {
             const PRODUCTS = getAllProducts();
             const q = lpSearchQuery;
             const filtered = q ? PRODUCTS.filter(p => p.name.toLowerCase().includes(q) || p.uid.toLowerCase().includes(q)) : PRODUCTS;
-            
             const container = document.getElementById('lpProductList');
-            if(!container) return;
-            
             if (!filtered.length) {
                 container.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">🔍</div><p>No products found.</p></div>`;
                 return;
             }
-
             container.innerHTML = filtered.map(p => `
                 <div class="lp-product-row ${p.outOfStock ? 'oos-row' : ''}" id="lprow-${p.uid}">
                     <img class="lp-thumb" src="${p.image}" alt="${escHtml(p.name)}">
@@ -1603,30 +1422,13 @@
                             ${p.isDefault ? '<span class="lp-default-badge">Default</span>' : ''}
                             ${p.outOfStock ? '<span class="lp-oos-badge">Out of Stock</span>' : ''}
                         </div>
-
-                        <!-- Inline edit panel -->
                         <div class="lp-edit-panel" id="lpedit-${p.uid}">
                             <div class="lp-edit-grid">
-                                <div>
-                                    <label class="lp-edit-label">Name</label>
-                                    <input class="lp-edit-input" id="lpen-${p.uid}" value="${escAttr(p.name)}">
-                                </div>
-                                <div>
-                                    <label class="lp-edit-label">Price (₹)</label>
-                                    <input class="lp-edit-input" type="number" id="lpep-${p.uid}" value="${p.price}">
-                                </div>
-                                <div>
-                                    <label class="lp-edit-label">Category</label>
-                                    <input class="lp-edit-input" id="lpec-${p.uid}" value="${escAttr(p.category)}">
-                                </div>
-                                <div>
-                                    <label class="lp-edit-label">Image URL</label>
-                                    <input class="lp-edit-input" id="lpei-${p.uid}" value="${escAttr(p.image)}">
-                                </div>
-                                <div class="full">
-                                    <label class="lp-edit-label">Description (optional)</label>
-                                    <textarea class="lp-edit-input" id="lped-${p.uid}" rows="2">${escHtml(p.description || '')}</textarea>
-                                </div>
+                                <div><label class="lp-edit-label">Name</label><input class="lp-edit-input" id="lpen-${p.uid}" value="${escAttr(p.name)}"></div>
+                                <div><label class="lp-edit-label">Price (₹)</label><input class="lp-edit-input" type="number" id="lpep-${p.uid}" value="${p.price}"></div>
+                                <div><label class="lp-edit-label">Category</label><input class="lp-edit-input" id="lpec-${p.uid}" value="${escAttr(p.category)}"></div>
+                                <div><label class="lp-edit-label">Image URL</label><input class="lp-edit-input" id="lpei-${p.uid}" value="${escAttr(p.image)}"></div>
+                                <div class="full"><label class="lp-edit-label">Description (optional)</label><textarea class="lp-edit-input" id="lped-${p.uid}" rows="2">${escHtml(p.description || '')}</textarea></div>
                             </div>
                             <button class="lp-save-btn" data-saveuid="${p.uid}">💾 Save Changes</button>
                         </div>
@@ -1636,234 +1438,117 @@
                         <button class="lp-btn ${p.outOfStock ? 'oos-active' : ''}" data-oosuid="${p.uid}">${p.outOfStock ? '✅ In Stock' : '🚫 Out of Stock'}</button>
                         ${!p.isDefault ? `<button class="lp-btn danger" data-deleteuid="${p.uid}">🗑️ Remove</button>` : ''}
                     </div>
-                </div>
-            `).join('');
-
-            // Edit toggle
+                </div>`).join('');
             container.querySelectorAll('[data-edituid]').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const panel = document.getElementById(`lpedit-${btn.dataset.edituid}`);
-                    panel?.classList.toggle('open');
-                    btn.textContent = panel?.classList.contains('open') ? '✖ Cancel' : '✏️ Edit';
+                    panel.classList.toggle('open');
+                    btn.textContent = panel.classList.contains('open') ? '✖ Cancel' : '✏️ Edit';
                 });
             });
-
-            // Save edits
-            container.querySelectorAll('[data-saveuid]').forEach(btn => {
-                btn.addEventListener('click', () => saveProductEdit(btn.dataset.saveuid));
-            });
-
-            // Toggle OOS
-            container.querySelectorAll('[data-oosuid]').forEach(btn => {
-                btn.addEventListener('click', () => toggleOOS(btn.dataset.oosuid));
-            });
-
-            // Delete
-            container.querySelectorAll('[data-deleteuid]').forEach(btn => {
-                btn.addEventListener('click', () => deleteProduct(btn.dataset.deleteuid));
-            });
+            container.querySelectorAll('[data-saveuid]').forEach(btn => { btn.addEventListener('click', () => saveProductEdit(btn.dataset.saveuid)); });
+            container.querySelectorAll('[data-oosuid]').forEach(btn => { btn.addEventListener('click', () => toggleOOS(btn.dataset.oosuid)); });
+            container.querySelectorAll('[data-deleteuid]').forEach(btn => { btn.addEventListener('click', () => deleteProduct(btn.dataset.deleteuid)); });
         }
 
-        async function saveProductEdit(uid) {
-            const name = document.getElementById(`lpen-${uid}`)?.value.trim();
-            const price = parseFloat(document.getElementById(`lpep-${uid}`)?.value);
-            const cat = document.getElementById(`lpec-${uid}`)?.value.trim();
-            const img = document.getElementById(`lpei-${uid}`)?.value.trim();
-            const desc = document.getElementById(`lped-${uid}`)?.value.trim();
-
-            if (!name || !img || isNaN(price) || !cat) {
-                alert('Name, Price, Category and Image are required.');
-                return;
-            }
-
-            const prodData = { uid, name, price, category: cat, image: img, description: desc, timestamp: Date.now() };
-
-            if (!isOfflineMode && window._fbHelpers) {
-                const { db, appId, addDoc, collection, updateDoc, doc } = window._fbHelpers;
-                const existingDyn = dynamicProducts.find(p => p.uid === uid);
-
-                try {
-                    if (existingDyn && existingDyn.fbId) {
-                        // It was already a dynamic product, update it
-                        await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'products', existingDyn.fbId), prodData);
-                    } else {
-                        // It was a default product, create a dynamic OVERRIDE in the global database
-                        await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'products'), prodData);
-                    }
-                } catch (e) {
-                    alert('Failed to save to cloud.');
-                    return;
-                }
+        function saveProductEdit(uid) {
+            const name = document.getElementById(`lpen-${uid}`).value.trim();
+            const price = parseFloat(document.getElementById(`lpep-${uid}`).value);
+            const cat = document.getElementById(`lpec-${uid}`).value.trim();
+            const img = document.getElementById(`lpei-${uid}`).value.trim();
+            const desc = document.getElementById(`lped-${uid}`).value.trim();
+            if (!name || !img || isNaN(price) || !cat) { alert('Name, Price, Category and Image are required.'); return; }
+            const defIdx = DEFAULT_PRODUCTS.findIndex(p => p.uid === uid);
+            if (defIdx !== -1) {
+                DEFAULT_PRODUCTS[defIdx].name = name; DEFAULT_PRODUCTS[defIdx].price = price;
+                DEFAULT_PRODUCTS[defIdx].category = cat; DEFAULT_PRODUCTS[defIdx].image = img;
+                DEFAULT_PRODUCTS[defIdx].description = desc;
             } else {
-                // Offline fallback
                 const dynIdx = dynamicProducts.findIndex(p => p.uid === uid);
-                if (dynIdx !== -1) {
-                    dynamicProducts[dynIdx] = { ...dynamicProducts[dynIdx], ...prodData };
-                } else {
-                    dynamicProducts.push(prodData);
-                }
-                saveDynamic();
+                if (dynIdx !== -1) { dynamicProducts[dynIdx] = { ...dynamicProducts[dynIdx], name, price, category: cat, image: img, description: desc }; saveDynamic(); }
             }
-
-            buildFilters();
-            renderProducts();
-            renderListedProducts();
+            buildFilters(); renderProducts(); renderListedProducts();
         }
 
-        async function toggleOOS(uid) {
-            oosMap[uid] = !oosMap[uid];
-            saveOOSMap();
-
-            // Push OOS State to global database
-            if (!isOfflineMode && window._fbHelpers) {
-                try {
-                    const { db, appId, doc, setDoc } = window._fbHelpers;
-                    await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'config', 'productStates'), { oosMap }, { merge: true });
-                } catch (e) { console.error('Failed to update OOS globally.'); }
-            }
-
-            buildFilters();
-            renderProducts();
-            renderListedProducts();
-        }
+        function toggleOOS(uid) { oosMap[uid] = !oosMap[uid]; saveOOSMap(); buildFilters(); renderProducts(); renderListedProducts(); }
 
         async function deleteProduct(uid) {
             const ok = await customConfirm('Are you sure you want to permanently remove this product?');
             if (!ok) return;
-
-            if (!isOfflineMode && window._fbHelpers) {
+            if (isOfflineMode || !window._fbHelpers) {
+                dynamicProducts = dynamicProducts.filter(p => p.uid !== uid); saveDynamic();
+            } else {
                 const prod = dynamicProducts.find(p => p.uid === uid);
                 if (prod && prod.fbId) {
                     try {
                         const { db, appId } = window._fbHelpers;
                         const { deleteDoc, doc } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js");
                         await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'products', prod.fbId));
-                    } catch(e) {
-                        alert('Failed to delete from cloud.');
-                        return;
-                    }
-                }
-            } else {
-                dynamicProducts = dynamicProducts.filter(p => p.uid !== uid);
-                saveDynamic();
+                    } catch(e) { alert('Failed to delete from cloud.'); return; }
+                } else { dynamicProducts = dynamicProducts.filter(p => p.uid !== uid); saveDynamic(); }
             }
-            buildFilters();
-            renderProducts();
-            renderListedProducts();
+            buildFilters(); renderProducts(); renderListedProducts();
         }
 
         // ---- CHANGE PASSWORD ----
         function clearPwdFields() {
-            ['pwdCurrent','pwdNew','pwdConfirm'].forEach(id => { 
-                const el = document.getElementById(id);
-                if(el) el.value = ''; 
-            });
+            ['pwdCurrent','pwdNew','pwdConfirm'].forEach(id => { document.getElementById(id).value = ''; });
             const msg = document.getElementById('pwdMsg');
-            if(msg) {
-                msg.className = 'pwd-msg';
-                msg.textContent = '';
-            }
+            msg.className = 'pwd-msg'; msg.textContent = '';
         }
 
-        document.getElementById('changePwdBtn')?.addEventListener('click', async () => {
-            const cur = document.getElementById('pwdCurrent')?.value;
-            const nw = document.getElementById('pwdNew')?.value.trim();
-            const conf = document.getElementById('pwdConfirm')?.value.trim();
+        document.getElementById('changePwdBtn').addEventListener('click', async () => {
+            const cur = document.getElementById('pwdCurrent').value;
+            const nw = document.getElementById('pwdNew').value.trim();
+            const conf = document.getElementById('pwdConfirm').value.trim();
             const msg = document.getElementById('pwdMsg');
-
-            if (cur !== ADMIN_PASS) {
-                if(msg){ msg.className = 'pwd-msg error'; msg.textContent = 'Current password is incorrect.'; }
-                return;
-            }
-            if (!nw) {
-                if(msg){ msg.className = 'pwd-msg error'; msg.textContent = 'New password cannot be empty.'; }
-                return;
-            }
-            if (nw !== conf) {
-                if(msg){ msg.className = 'pwd-msg error'; msg.textContent = 'New passwords do not match.'; }
-                return;
-            }
-
-            // Save locally
+            if (cur !== ADMIN_PASS) { msg.className = 'pwd-msg error'; msg.textContent = 'Current password is incorrect.'; return; }
+            if (!nw) { msg.className = 'pwd-msg error'; msg.textContent = 'New password cannot be empty.'; return; }
+            if (nw !== conf) { msg.className = 'pwd-msg error'; msg.textContent = 'New passwords do not match.'; return; }
             ADMIN_PASS = nw;
             localStorage.setItem('shopify_admin_pass', nw);
-
-            // Save globally!
             if (!isOfflineMode && window._fbHelpers) {
                 try {
                     const { db, appId, doc, setDoc } = window._fbHelpers;
                     const adminDocPath = doc(db, 'artifacts', appId, 'public', 'data', 'config', 'adminSettings');
                     await setDoc(adminDocPath, { password: nw }, { merge: true });
-                } catch (error) {
-                    console.error("Couldn't save password to the cloud:", error);
-                }
+                } catch (error) { console.error("Couldn't save password to the cloud:", error); }
             }
-
-            if(msg){
-                msg.className = 'pwd-msg success';
-                msg.textContent = '✓ Password updated successfully!';
-            }
-            const pN = document.getElementById('pwdNew'); if(pN) pN.value = '';
-            const pC = document.getElementById('pwdConfirm'); if(pC) pC.value = '';
-            const pCur = document.getElementById('pwdCurrent'); if(pCur) pCur.value = '';
+            msg.className = 'pwd-msg success'; msg.textContent = '✓ Password updated successfully!';
+            document.getElementById('pwdNew').value = ''; document.getElementById('pwdConfirm').value = ''; document.getElementById('pwdCurrent').value = '';
         });
 
         // ============================================================
         // ORDER FORM SUBMIT
         // ============================================================
-        document.getElementById('orderForm')?.addEventListener('submit', async function(e) {
+        document.getElementById('orderForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
-            if (btn) {
-                btn.disabled = true;
-                btn.textContent = 'Placing order…';
-            }
-
+            btn.disabled = true; btn.textContent = 'Placing order…';
             const formData = new FormData(this);
             const newOrder = {
                 orderId: 'ORD-' + Math.floor(100000 + Math.random() * 900000),
-                date: new Date().toLocaleString(),
-                timestamp: Date.now(),
-                items: [...cart],
-                totalFormatted: fmt(getTotal()),
-                customerName: formData.get('Customer Name'),
-                customerPhone: formData.get('Phone Number'),
-                address: formData.get('Delivery Address'),
-                instructions: formData.get('Special Instructions') || '',
-                status: 'Active',
-                creatorId: currentUser ? currentUser.uid : 'local-user'
+                date: new Date().toLocaleString(), timestamp: Date.now(),
+                items: [...cart], totalFormatted: fmt(getTotal()),
+                customerName: formData.get('Customer Name'), customerPhone: formData.get('Phone Number'),
+                address: formData.get('Delivery Address'), instructions: formData.get('Special Instructions') || '',
+                status: 'Active', creatorId: currentUser ? currentUser.uid : 'local-user'
             };
-
             try {
                 if (isOfflineMode || !window._fbHelpers) {
-                    cloudOrders.unshift(newOrder);
-                    saveLocalOrders();
+                    cloudOrders.unshift(newOrder); saveLocalOrders();
                 } else {
                     const { db, appId, addDoc, collection } = window._fbHelpers;
                     await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'orders'), newOrder);
                 }
-
                 try {
                     await fetch('https://formspree.io/f/xeeplold', { method: 'POST', body: formData, headers: { Accept: 'application/json' } });
                 } catch(fe) {}
-
-                cart = [];
-                saveCart();
-                updateCartUI();
-                renderProducts();
-                
-                const cv = document.getElementById('checkoutView');
-                if (cv) cv.style.display = 'none';
-                const sv = document.getElementById('successView');
-                if (sv) sv.style.display = 'block';
-            } catch(err) {
-                alert('Network error. Please try again or WhatsApp us directly.');
-            }
-            
-            if (btn) {
-                btn.disabled = false;
-                btn.textContent = '✦ Confirm Order';
-            }
+                cart = []; saveCart(); updateCartUI(); renderProducts();
+                document.getElementById('checkoutView').style.display = 'none';
+                document.getElementById('successView').style.display = 'block';
+            } catch(err) { alert('Network error. Please try again or WhatsApp us directly.'); }
+            btn.disabled = false; btn.textContent = '✦ Confirm Order';
         });
 
         // ============================================================
@@ -1879,49 +1564,39 @@
         }
 
         // ============================================================
-        // EVENT WIRING (all via addEventListener — works in VS Code)
+        // EVENT WIRING
         // ============================================================
-        document.getElementById('ordersHeaderBtn')?.addEventListener('click', openOrders);
-        document.getElementById('cartHeaderBtn')?.addEventListener('click', openCart);
-        document.getElementById('closeCartBtn')?.addEventListener('click', closeCart);
-        document.getElementById('closeCheckoutBtn')?.addEventListener('click', closeCheckout);
-        document.getElementById('closeOrdersBtn')?.addEventListener('click', closeOrders);
-        document.getElementById('closeAdminBtn')?.addEventListener('click', closeAdmin);
-        document.getElementById('checkoutBtn')?.addEventListener('click', openCheckout);
-        document.getElementById('adminPortalLink')?.addEventListener('click', openAdmin);
-
-        document.getElementById('drawerOverlay')?.addEventListener('click', closeCart);
-        document.getElementById('modalOverlay')?.addEventListener('click', e => {
-            if (e.target === document.getElementById('modalOverlay')) closeCheckout();
-        });
-        document.getElementById('ordersModalOverlay')?.addEventListener('click', e => {
-            if (e.target === document.getElementById('ordersModalOverlay')) closeOrders();
-        });
-        document.getElementById('adminModalOverlay')?.addEventListener('click', e => {
-            if (e.target === document.getElementById('adminModalOverlay')) closeAdmin();
-        });
-
-        document.getElementById('confirmYesBtn')?.addEventListener('click', () => {
-            document.getElementById('confirmModalOverlay')?.classList.remove('open');
+        document.getElementById('ordersHeaderBtn').addEventListener('click', openOrders);
+        document.getElementById('cartHeaderBtn').addEventListener('click', openCart);
+        document.getElementById('closeCartBtn').addEventListener('click', closeCart);
+        document.getElementById('closeCheckoutBtn').addEventListener('click', closeCheckout);
+        document.getElementById('closeOrdersBtn').addEventListener('click', closeOrders);
+        document.getElementById('closeAdminBtn').addEventListener('click', closeAdmin);
+        document.getElementById('checkoutBtn').addEventListener('click', openCheckout);
+        document.getElementById('adminPortalLink').addEventListener('click', openAdmin);
+        document.getElementById('drawerOverlay').addEventListener('click', closeCart);
+        document.getElementById('modalOverlay').addEventListener('click', e => { if (e.target === document.getElementById('modalOverlay')) closeCheckout(); });
+        document.getElementById('ordersModalOverlay').addEventListener('click', e => { if (e.target === document.getElementById('ordersModalOverlay')) closeOrders(); });
+        document.getElementById('adminModalOverlay').addEventListener('click', e => { if (e.target === document.getElementById('adminModalOverlay')) closeAdmin(); });
+        document.getElementById('confirmYesBtn').addEventListener('click', () => {
+            document.getElementById('confirmModalOverlay').classList.remove('open');
             if (resolveConfirm) resolveConfirm(true);
         });
-        document.getElementById('confirmNoBtn')?.addEventListener('click', () => {
-            document.getElementById('confirmModalOverlay')?.classList.remove('open');
+        document.getElementById('confirmNoBtn').addEventListener('click', () => {
+            document.getElementById('confirmModalOverlay').classList.remove('open');
             if (resolveConfirm) resolveConfirm(false);
         });
-
-        // Admin tab buttons
-        document.getElementById('tabBtnOrders')?.addEventListener('click', () => switchAdminTab('orders'));
-        document.getElementById('tabBtnAddProduct')?.addEventListener('click', () => switchAdminTab('addProduct'));
-        document.getElementById('tabBtnListedProducts')?.addEventListener('click', () => switchAdminTab('listedProducts'));
-        document.getElementById('tabBtnPassword')?.addEventListener('click', () => switchAdminTab('password'));
+        document.getElementById('tabBtnOrders').addEventListener('click', () => switchAdminTab('orders'));
+        document.getElementById('tabBtnAddProduct').addEventListener('click', () => switchAdminTab('addProduct'));
+        document.getElementById('tabBtnListedProducts').addEventListener('click', () => switchAdminTab('listedProducts'));
+        document.getElementById('tabBtnPassword').addEventListener('click', () => switchAdminTab('password'));
 
         // ============================================================
         // INIT
         // ============================================================
         buildFilters();
         renderProducts();
-        updateCartUI(); 
+        updateCartUI();
     </script>
 </body>
 </html>
