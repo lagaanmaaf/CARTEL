@@ -1652,13 +1652,22 @@
         function switchAdminTab(tab) {
             const tabs = { orders: 'tabBtnOrders', addProduct: 'tabBtnAddProduct', listedProducts: 'tabBtnListedProducts', password: 'tabBtnPassword' };
             const panels = { orders: 'adminOrdersList', addProduct: 'adminAddProductPanel', listedProducts: 'adminListedProductsPanel', password: 'adminPasswordPanel' };
+            
             Object.keys(tabs).forEach(t => {
                 document.getElementById(tabs[t])?.classList.toggle('active', t === tab);
                 const p = document.getElementById(panels[t]);
                 if(p) p.style.display = t === tab ? 'block' : 'none';
             });
+            
             if (tab === 'orders') renderAdminOrders();
-            if (tab === 'listedProducts') renderListedProducts();
+            if (tab === 'listedProducts') {
+                // Force sync the search query and render after the tab is fully visible
+                const searchInput = document.getElementById('lpSearchInput');
+                if (searchInput) {
+                    lpSearchQuery = searchInput.value.trim().toLowerCase();
+                }
+                setTimeout(() => renderListedProducts(), 50);
+            }
             if (tab === 'password') clearPwdFields();
         }
 
