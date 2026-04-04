@@ -8,421 +8,91 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0a0a0f;
-            --surface: #111118;
-            --surface2: #18181f;
-            --border: rgba(255,255,255,0.07);
-            --accent: #6c63ff;
-            --accent2: #ff6584;
-            --accent3: #43e0b8;
-            --text: #f0f0f5;
-            --muted: #888899;
-            --card-bg: #14141c;
-            --radius: 16px;
-            --radius-sm: 10px;
+            --bg: #0a0a0f; --surface: #111118; --surface2: #18181f;
+            --border: rgba(255,255,255,0.07); --accent: #6c63ff;
+            --accent2: #ff6584; --accent3: #43e0b8; --text: #f0f0f5;
+            --muted: #888899; --card-bg: #14141c; --radius: 16px; --radius-sm: 10px;
         }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.4;
-        }
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(10,10,15,0.9);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            padding: 0 20px;
-        }
-        .header-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 64px;
-        }
-        .logo {
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            font-size: 1.5rem;
-            color: var(--text);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .logo-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent), var(--accent2));
-            display: inline-block;
-        }
-        .tagline {
-            font-size: 0.75rem;
-            color: var(--muted);
-            letter-spacing: 0.5px;
-            font-style: italic;
-        }
-        .header-actions {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        .cart-btn {
-            position: relative;
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 10px 18px;
-            color: var(--text);
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.9rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-        .cart-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--accent2);
-            color: #fff;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            font-size: 0.7rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transform: scale(0);
-            transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
-        }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+        body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; opacity: 0.4; }
+        
+        header { position: sticky; top: 0; z-index: 100; background: rgba(10,10,15,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 0 20px; }
+        .header-inner { max-width: 100%; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--text); text-decoration: none; letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px; }
+        .logo-dot { width: 8px; height: 8px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: inline-block; }
+        .tagline { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.5px; font-style: italic; display: none; margin-left: 15px; }
+        @media (min-width: 768px) { .tagline { display: block; } }
+
+        .header-actions { display: flex; gap: 8px; align-items: center; }
+        .cart-btn { position: relative; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 14px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s; white-space: nowrap; }
+        .cart-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .cart-count { position: absolute; top: -8px; right: -8px; background: var(--accent2); color: #fff; width: 20px; height: 20px; border-radius: 50%; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; justify-content: center; transform: scale(0); transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1); }
         .cart-count.show { transform: scale(1); }
-        .hero {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 60px 20px 40px;
-        }
-        .hero-title {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2.2rem, 6vw, 4rem);
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -1.5px;
-        }
-        .hero-title .highlight {
-            background: linear-gradient(90deg, var(--accent), var(--accent3));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero-sub {
-            margin-top: 12px;
-            color: var(--muted);
-            font-size: 1rem;
-            font-weight: 300;
-            line-height: 1.6;
-        }
-        .location-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            padding: 6px 14px;
-            font-size: 0.78rem;
-            color: var(--muted);
-            margin-top: 16px;
-        }
-        .filter-wrap {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px 24px;
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        .filter-btn {
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            padding: 7px 18px;
-            color: var(--muted);
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.15s;
-        }
-        .filter-btn:hover, .filter-btn.active {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: #fff;
-        }
-        .products-wrap {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px 100px;
-            border-radius: var(--radius);
-        }
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            padding-top: 20px;
-        }
-        .product-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-            display: flex;
-            flex-direction: column;
-            animation: fadeUp 0.4s ease both;
-        }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .product-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(108,99,255,0.4);
-            box-shadow: 0 20px 60px rgba(108,99,255,0.12);
-        }
+        
+        .profile-dropdown { position: absolute; top: 100%; right: 0; margin-top: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); width: 180px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: none; flex-direction: column; overflow: hidden; z-index: 200; }
+        .profile-dropdown.show { display: flex; animation: slideDown 0.2s ease; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .profile-dropdown button { background: none; border: none; color: var(--text); padding: 12px 16px; text-align: left; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; cursor: pointer; transition: background 0.2s; border-bottom: 1px solid var(--border); }
+        .profile-dropdown button:last-child { border-bottom: none; }
+        .profile-dropdown button:hover { background: var(--surface2); }
+        .profile-header { padding: 16px 16px 12px; border-bottom: 1px solid var(--border); background: linear-gradient(180deg, rgba(108,99,255,0.05) 0%, transparent 100%); }
+        .profile-name { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+        .profile-email { font-size: 0.75rem; color: var(--muted); word-break: break-all; line-height: 1.2; }
+
+        .hero { max-width: 1100px; margin: 0 auto; padding: 60px 20px 40px; }
+        .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; }
+        .hero-title .highlight { background: linear-gradient(90deg, var(--accent), var(--accent3)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-sub { margin-top: 12px; color: var(--muted); font-size: 1rem; font-weight: 300; line-height: 1.6; }
+        .location-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--surface2); border: 1px solid var(--border); border-radius: 100px; padding: 6px 14px; font-size: 0.78rem; color: var(--muted); margin-top: 16px; }
+        
+        .filter-wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px 24px; display: flex; gap: 8px; flex-wrap: wrap; }
+        .filter-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 100px; padding: 7px 18px; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 0.85rem; cursor: pointer; transition: all 0.15s; }
+        .filter-btn:hover, .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+        
+        .products-wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px 100px; border-radius: var(--radius); }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; padding-top: 20px; }
+        .product-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; animation: fadeUp 0.4s ease both; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .product-card:hover { transform: translateY(-4px); border-color: rgba(108,99,255,0.4); box-shadow: 0 20px 60px rgba(108,99,255,0.12); }
         .product-card.out-of-stock { opacity: 0.7; }
-        .product-img-wrap {
-            height: 220px;
-            overflow: hidden;
-            background: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        .product-img-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            padding: 20px;
-            transition: transform 0.4s ease;
-        }
+        .product-img-wrap { height: 220px; overflow: hidden; background: #ffffff; display: flex; align-items: center; justify-content: center; position: relative; }
+        .product-img-wrap img { width: 100%; height: 100%; object-fit: contain; padding: 20px; transition: transform 0.4s ease; }
         .product-card:hover .product-img-wrap img { transform: scale(1.06); }
-        .oos-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(255,101,132,0.92);
-            color: #fff;
-            font-size: 0.68rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 4px 10px;
-            border-radius: 100px;
-        }
-        .product-info {
-            padding: 18px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .product-category {
-            font-size: 0.7rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--accent3);
-            font-weight: 500;
-        }
-        .product-id-tag {
-            font-size: 0.65rem;
-            color: var(--muted);
-            letter-spacing: 0.5px;
-        }
-        .product-name {
-            font-family: 'Syne', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 600;
-            line-height: 1.4;
-            color: var(--text);
-            flex: 1;
-        }
-        .product-desc {
-            font-size: 0.75rem;
-            color: var(--muted);
-            line-height: 1.5;
-            margin-top: -6px;
-            flex: 1;
-        }
-        .product-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            margin-top: auto;
-        }
-        .product-price {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text);
-        }
-        .product-price span {
-            font-size: 0.8rem;
-            color: var(--muted);
-            font-weight: 400;
-        }
-        .add-btn {
-            background: linear-gradient(135deg, var(--accent), #8b5cf6);
-            border: none;
-            border-radius: var(--radius-sm);
-            color: #fff;
-            padding: 10px 18px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
+        .oos-badge { position: absolute; top: 10px; left: 10px; background: rgba(255,101,132,0.92); color: #fff; font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; }
+        .product-info { padding: 18px; flex: 1; display: flex; flex-direction: column; gap: 12px; }
+        .product-category { font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent3); font-weight: 500; }
+        .product-name { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 600; line-height: 1.4; color: var(--text); flex: 1; }
+        .product-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.5; margin-top: -6px; flex: 1; }
+        .product-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; }
+        .product-price { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--text); }
+        
+        .add-btn { background: linear-gradient(135deg, var(--accent), #8b5cf6); border: none; border-radius: var(--radius-sm); color: #fff; padding: 10px 18px; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
         .add-btn:hover { transform: scale(1.04); opacity: 0.9; }
-        .add-btn:disabled, .add-btn.disabled {
-            background: var(--surface2);
-            color: var(--muted);
-            cursor: not-allowed;
-            border: 1px solid var(--border);
-            transform: none;
-            opacity: 1;
-        }
-        .wa-float {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            z-index: 200;
-            background: #25D366;
-            color: #fff;
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-            text-decoration: none;
-            transition: transform 0.2s;
-        }
+        .add-btn:disabled, .add-btn.disabled { background: var(--surface2); color: var(--muted); cursor: not-allowed; border: 1px solid var(--border); transform: none; opacity: 1; }
+        
+        .wa-float { position: fixed; bottom: 90px; right: 20px; z-index: 200; background: #25D366; color: #fff; width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.4); text-decoration: none; transition: transform 0.2s; }
         .wa-float:hover { transform: scale(1.1); }
-        .drawer-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 300;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(4px);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-        }
+        
+        /* Drawer Overlay & Cart Drawer */
+        .drawer-overlay { position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); opacity: 0; pointer-events: none; transition: opacity 0.3s; }
         .drawer-overlay.open { opacity: 1; pointer-events: all; }
-        .cart-drawer {
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 301;
-            width: min(420px, 100vw);
-            background: var(--surface);
-            border-left: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            transform: translateX(100%);
-            transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
-        }
+        .cart-drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 301; width: min(420px, 100vw); background: var(--surface); border-left: 1px solid var(--border); display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); }
         .cart-drawer.open { transform: translateX(0); }
-        .drawer-header {
-            padding: 20px 24px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+        .drawer-header { padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
         .drawer-title { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; }
-        .close-btn {
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: var(--muted);
-            font-size: 1.1rem;
-            transition: all 0.15s;
-        }
+        .close-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--muted); font-size: 1.1rem; transition: all 0.15s; }
         .close-btn:hover { color: var(--text); border-color: var(--accent); }
         .drawer-body { flex: 1; overflow-y: auto; padding: 16px 24px; }
         .cart-empty { text-align: center; padding: 60px 20px; color: var(--muted); }
         .cart-empty-icon { font-size: 3rem; margin-bottom: 12px; opacity: 0.4; }
-        .cart-item {
-            display: grid;
-            grid-template-columns: 64px 1fr auto;
-            gap: 12px;
-            align-items: start;
-            padding: 14px 0;
-            border-bottom: 1px solid var(--border);
-        }
-        .cart-item-img {
-            width: 64px;
-            height: 64px;
-            border-radius: 10px;
-            object-fit: contain;
-            background: #ffffff;
-            padding: 6px;
-        }
+        .cart-item { display: grid; grid-template-columns: 64px 1fr auto; gap: 12px; align-items: start; padding: 14px 0; border-bottom: 1px solid var(--border); }
+        .cart-item-img { width: 64px; height: 64px; border-radius: 10px; object-fit: contain; background: #ffffff; padding: 6px; }
         .cart-item-name { font-size: 0.85rem; font-weight: 500; line-height: 1.4; margin-bottom: 6px; }
         .cart-item-price { font-size: 0.8rem; color: var(--accent3); font-weight: 600; }
         .qty-row { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
-        .qty-btn {
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            width: 28px;
-            height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: var(--text);
-            font-size: 1rem;
-            transition: all 0.15s;
-        }
+        .qty-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text); font-size: 1rem; transition: all 0.15s; }
         .qty-btn:hover { border-color: var(--accent); color: var(--accent); }
         .qty-num { font-size: 0.9rem; font-weight: 600; min-width: 20px; text-align: center; }
         .remove-btn { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 0.85rem; padding: 4px; transition: color 0.15s; }
@@ -432,84 +102,62 @@
         .total-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
         .total-label { font-size: 0.85rem; color: var(--muted); }
         .total-amount { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; }
-        .checkout-btn {
-            width: 100%;
-            background: linear-gradient(135deg, var(--accent), #8b5cf6);
-            border: none;
-            border-radius: var(--radius-sm);
-            color: #fff;
-            padding: 15px;
-            font-family: 'Syne', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
+        
+        .checkout-btn { width: 100%; background: linear-gradient(135deg, var(--accent), #8b5cf6); border: none; border-radius: var(--radius-sm); color: #fff; padding: 15px; font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s; }
         .checkout-btn:hover { opacity: 0.9; }
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 400;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(6px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-        }
+        
+        /* Modals Shared */
+        .modal-overlay { position: fixed; inset: 0; z-index: 400; background: rgba(0,0,0,0.8); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
         .modal-overlay.open { opacity: 1; pointer-events: all; }
-        .modal {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            width: 100%;
-            max-width: 480px;
-            max-height: 90vh;
-            overflow-y: auto;
-            transform: scale(0.95) translateY(20px);
-            transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
-        }
+        .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; transform: scale(0.95) translateY(20px); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1); }
         .modal-overlay.open .modal { transform: scale(1) translateY(0); }
-        #adminModalOverlay { padding: 0; }
-        #adminModalOverlay .modal {
-            max-width: 100vw;
-            height: 100vh;
-            max-height: 100vh;
-            border-radius: 0;
-            transform: scale(1) translateY(0);
-            display: flex;
-            flex-direction: column;
-        }
-        #adminModalOverlay .modal-body { flex: 1; overflow-y: auto; }
-        .confirm-modal-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 500;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(6px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-        }
+        .modal-header { padding: 24px 24px 0; display: flex; justify-content: space-between; align-items: center; }
+        .modal-title { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; }
+        .modal-body { padding: 20px 24px 24px; }
+        
+        /* Forms */
+        .form-group { margin-bottom: 14px; }
+        .form-group label { display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 6px; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 14px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; transition: border-color 0.15s; outline: none; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); }
+        .form-group textarea { resize: vertical; min-height: 80px; }
+        .submit-btn { width: 100%; background: linear-gradient(135deg, var(--accent), #8b5cf6); border: none; border-radius: var(--radius-sm); color: #fff; padding: 15px; font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s; margin-top: 4px; }
+        .submit-btn:hover { opacity: 0.9; }
+        
+        /* Fancy Checkout Summary */
+        .fancy-order-summary { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 24px; max-height: 40vh; overflow-y: auto; }
+        .fancy-order-item { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed var(--border); }
+        .fancy-order-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .fancy-item-img { width: 48px; height: 48px; border-radius: 8px; background: #fff; object-fit: contain; padding: 4px; }
+        .fancy-item-info { flex: 1; }
+        .fancy-item-name { font-size: 0.85rem; font-weight: 600; line-height: 1.3; color: var(--text); }
+        .fancy-item-qty { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+        .fancy-item-price { font-weight: 700; color: var(--accent3); font-size: 0.9rem; }
+        .fancy-total-row { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 16px; border-top: 2px solid var(--border); }
+        .fancy-total-label { font-size: 0.9rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+        .fancy-total-amount { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--text); }
+
+        /* Beautiful Success Screen */
+        .success-screen { display: none; text-align: center; padding: 50px 24px; }
+        .success-icon-wrap { width: 80px; height: 80px; margin: 0 auto 24px; background: linear-gradient(135deg, var(--accent3), #00c896); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(67, 224, 184, 0.4); animation: scaleBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        @keyframes scaleBounce { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        .success-title { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; background: linear-gradient(90deg, var(--accent3), #fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .success-sub { color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 28px; }
+
+        /* Auth Links & Errors */
+        .auth-links { margin-top:15px; text-align:center; font-size:0.85rem; }
+        .auth-links a { color: var(--accent); text-decoration: none; padding: 5px; }
+        .auth-links a:hover { text-decoration: underline; }
+        .auth-links .muted-link { color: var(--muted); }
+        .auth-alert { font-size: 0.8rem; border-radius: 8px; padding: 8px 12px; margin-bottom: 14px; display: none; }
+        .auth-alert.show { display: block; }
+        .cancel-btn-outline { width: 100%; background: transparent; border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--muted); padding: 12px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; cursor: pointer; margin-top: 10px; transition: all 0.15s; }
+        .cancel-btn-outline:hover { border-color: var(--muted); color: var(--text); }
+        
+        /* Confirm Modal */
+        .confirm-modal-overlay { position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,0.8); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
         .confirm-modal-overlay.open { opacity: 1; pointer-events: all; }
-        .confirm-modal {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            width: 100%;
-            max-width: 360px;
-            padding: 24px;
-            text-align: center;
-            transform: scale(0.95);
-            transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
-        }
+        .confirm-modal { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); width: 100%; max-width: 360px; padding: 24px; text-align: center; transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1); }
         .confirm-modal-overlay.open .confirm-modal { transform: scale(1); }
         .confirm-msg { font-family: 'DM Sans', sans-serif; font-size: 1rem; margin-bottom: 24px; color: var(--text); line-height: 1.5; }
         .confirm-actions { display: flex; gap: 12px; justify-content: center; }
@@ -517,105 +165,14 @@
         .confirm-btn:hover { opacity: 0.9; }
         .btn-cancel-yes { background: var(--accent2); color: #fff; }
         .btn-cancel-no { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
-        .modal-header { padding: 24px 24px 0; display: flex; justify-content: space-between; align-items: center; }
-        .modal-title { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; }
-        .modal-body { padding: 20px 24px 24px; }
-        .admin-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 12px;
-            flex-wrap: wrap;
-        }
-        .admin-tab {
-            background: transparent;
-            border: none;
-            color: var(--muted);
-            font-family: 'Syne', sans-serif;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            padding: 6px 12px;
-            transition: all 0.2s;
-            border-radius: var(--radius-sm);
-            white-space: nowrap;
-        }
-        .admin-tab:hover { color: var(--text); background: var(--surface2); }
-        .admin-tab.active { color: var(--accent); background: rgba(108, 99, 255, 0.1); }
-        .order-summary {
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 14px;
-            margin-bottom: 20px;
-            font-size: 0.82rem;
-        }
-        .order-summary-title { font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; font-weight: 600; }
-        .order-line { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid var(--border); color: var(--muted); }
-        .order-line:last-child { border: none; }
-        .order-line.total { color: var(--text); font-weight: 700; font-size: 0.9rem; margin-top: 4px; padding-top: 10px; border-top: 1px solid var(--border); border-bottom: none; }
-        .form-group { margin-bottom: 14px; }
-        .form-group label { display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 6px; }
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%; background: var(--surface2); border: 1px solid var(--border);
-            border-radius: var(--radius-sm); padding: 11px 14px; color: var(--text);
-            font-family: 'DM Sans', sans-serif; font-size: 0.9rem; transition: border-color 0.15s; outline: none;
-        }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); }
-        .form-group textarea { resize: vertical; min-height: 80px; }
-        .form-group select:disabled { opacity: 0.5; cursor: not-allowed; }
         
-        /* Image Upload Toggle Styles */
-        .img-toggle {
-            display: flex; gap: 10px; background: var(--surface); padding: 4px; 
-            border-radius: 8px; border: 1px solid var(--border); margin-bottom: 10px;
-        }
-        .img-toggle label {
-            display: flex; align-items: center; gap: 6px; cursor: pointer; 
-            font-size: 0.8rem; margin: 0; padding: 6px 10px; flex: 1; 
-            justify-content: center; color: var(--muted); transition: color 0.2s;
-        }
-        .img-toggle input[type="radio"] { margin: 0; width: auto; }
-        .img-toggle label:hover { color: var(--text); }
-        #imageFileInput { padding: 8px 14px; background: var(--surface2); }
-        
-        .submit-btn {
-            width: 100%; background: linear-gradient(135deg, var(--accent), #8b5cf6); border: none;
-            border-radius: var(--radius-sm); color: #fff; padding: 15px; font-family: 'Syne', sans-serif;
-            font-size: 1rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s; margin-top: 4px;
-        }
-        .submit-btn:hover { opacity: 0.9; }
-        .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .success-screen { display: none; text-align: center; padding: 40px 24px; }
-        .success-icon {
-            width: 64px; height: 64px; background: linear-gradient(135deg, var(--accent3), #00c896);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 1.8rem; margin: 0 auto 20px; color: #fff;
-        }
-        .success-title { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
-        .success-sub { color: var(--muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 24px; }
-        .wa-btn {
-            display: inline-flex; align-items: center; gap: 8px; background: #25D366; color: #fff;
-            border: none; border-radius: var(--radius-sm); padding: 12px 24px; font-size: 0.95rem;
-            font-family: 'DM Sans', sans-serif; font-weight: 600; text-decoration: none; transition: transform 0.2s;
-        }
-        .wa-btn:hover { transform: scale(1.02); }
-        .order-history-card {
-            background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm);
-            padding: 16px; margin-bottom: 16px; position: relative;
-        }
-        .order-history-header {
-            display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
-            border-bottom: 1px solid var(--border); padding-bottom: 10px;
-        }
+        /* Order History */
+        .order-history-card { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; margin-bottom: 16px; position: relative; }
+        .order-history-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
         .order-id-group { display: flex; flex-direction: column; gap: 4px; }
         .order-id { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--text); font-size: 0.95rem; }
         .order-date { font-size: 0.75rem; color: var(--muted); }
-        .order-status {
-            font-size: 0.7rem; padding: 4px 10px; border-radius: 100px; font-weight: 700;
-            letter-spacing: 0.5px; text-transform: uppercase;
-        }
+        .order-status { font-size: 0.7rem; padding: 4px 10px; border-radius: 100px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
         .status-active { background: rgba(67, 224, 184, 0.15); color: var(--accent3); }
         .status-out { background: rgba(108, 99, 255, 0.15); color: var(--accent); }
         .status-delivered { background: rgba(0, 200, 150, 0.15); color: #00c896; }
@@ -624,227 +181,10 @@
         .order-history-details { background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-bottom: 12px; font-size: 0.8rem; color: var(--muted); }
         .order-history-details strong { color: var(--text); }
         .order-history-total { font-weight: 700; color: var(--text); font-size: 0.95rem; display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
-        .cancel-order-btn {
-            background: transparent; border: 1px solid var(--accent2); color: var(--accent2);
-            padding: 8px 14px; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600;
-            cursor: pointer; transition: all 0.2s; width: 100%; margin-top: 14px;
-        }
+        .cancel-order-btn { background: transparent; border: 1px solid var(--accent2); color: var(--accent2); padding: 8px 14px; border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.2s; width: 100%; margin-top: 14px; }
         .cancel-order-btn:hover { background: var(--accent2); color: #fff; }
-        .cancel-order-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-        /* ---- Listed Products Tab Styles ---- */
-        .lp-search-bar { display: flex; gap: 10px; margin-bottom: 18px; }
-        .lp-search-bar input {
-            flex: 1; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm);
-            padding: 10px 14px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
-            outline: none; transition: border-color 0.15s;
-        }
-        .lp-search-bar input:focus { border-color: var(--accent); }
-        .lp-product-row {
-            background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm);
-            padding: 14px 16px; margin-bottom: 12px; display: flex; gap: 14px; align-items: flex-start;
-        }
-        .lp-product-row.oos-row { border-color: rgba(255,101,132,0.3); }
-        .lp-thumb {
-            width: 60px; height: 60px; border-radius: 8px; object-fit: cover; background: #fff; padding: 4px; flex-shrink: 0;
-        }
-        .lp-info { flex: 1; min-width: 0; }
-        .lp-name { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--text); }
-        .lp-meta { font-size: 0.75rem; color: var(--muted); margin-top: 3px; }
-        .lp-meta span { margin-right: 10px; }
-        .lp-oos-badge {
-            background: rgba(255,101,132,0.15); color: var(--accent2); font-size: 0.65rem; font-weight: 700;
-            letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 100px; vertical-align: middle;
-        }
-        .lp-default-badge {
-            background: rgba(108,99,255,0.12); color: var(--accent); font-size: 0.65rem; font-weight: 700;
-            letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 100px; vertical-align: middle;
-        }
-        .lp-actions { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
-        .lp-btn {
-            background: var(--surface); border: 1px solid var(--border); border-radius: 7px; padding: 6px 12px;
-            font-size: 0.78rem; font-weight: 600; cursor: pointer; color: var(--text); transition: all 0.15s;
-            white-space: nowrap; font-family: 'DM Sans', sans-serif;
-        }
-        .lp-btn:hover { border-color: var(--accent); color: var(--accent); }
-        .lp-btn.danger:hover { border-color: var(--accent2); color: var(--accent2); }
-        .lp-btn.oos-active { background: rgba(255,101,132,0.12); border-color: var(--accent2); color: var(--accent2); }
-        .lp-btn.oos-active:hover { background: var(--accent2); color: #fff; }
-
-        /* Edit inline panel */
-        .lp-edit-panel { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
-        .lp-edit-panel.open { display: block; }
-        .lp-edit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .lp-edit-grid .full { grid-column: 1 / -1; }
-        .lp-edit-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 4px; display: block; }
-        .lp-edit-input {
-            width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
-            padding: 9px 12px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
-            outline: none; transition: border-color 0.15s;
-        }
-        .lp-edit-input:focus { border-color: var(--accent); }
-        .lp-save-btn {
-            background: linear-gradient(135deg, var(--accent), #8b5cf6); border: none; border-radius: 8px;
-            color: #fff; padding: 9px 20px; font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
-            font-weight: 600; cursor: pointer; margin-top: 10px; transition: opacity 0.2s;
-        }
-        .lp-save-btn:hover { opacity: 0.9; }
-
-        /* ---- Admin Password Setup / Login Screen ---- */
-        .admin-gate {
-            position: fixed;
-            inset: 0;
-            z-index: 600;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-        }
-        .admin-gate.open { opacity: 1; pointer-events: all; }
-        .admin-gate-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            width: 100%;
-            max-width: 420px;
-            padding: 36px 32px;
-            transform: scale(0.95) translateY(16px);
-            transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
-        }
-        .admin-gate.open .admin-gate-card { transform: scale(1) translateY(0); }
-        .admin-gate-icon {
-            width: 56px; height: 56px;
-            background: linear-gradient(135deg, var(--accent), #8b5cf6);
-            border-radius: 16px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; margin-bottom: 20px;
-        }
-        .admin-gate-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 800;
-            margin-bottom: 6px;
-            color: var(--text);
-        }
-        .admin-gate-sub {
-            font-size: 0.85rem;
-            color: var(--muted);
-            line-height: 1.5;
-            margin-bottom: 24px;
-        }
-        .admin-gate-input-wrap { position: relative; margin-bottom: 12px; }
-        .admin-gate-input {
-            width: 100%;
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 13px 48px 13px 16px;
-            color: var(--text);
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color 0.15s;
-        }
-        .admin-gate-input:focus { border-color: var(--accent); }
-        .pw-toggle {
-            position: absolute;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: var(--muted);
-            cursor: pointer;
-            font-size: 1rem;
-            padding: 4px;
-            transition: color 0.15s;
-        }
-        .pw-toggle:hover { color: var(--text); }
-        .admin-gate-hint {
-            font-size: 0.75rem;
-            color: var(--muted);
-            margin-bottom: 18px;
-            line-height: 1.5;
-        }
-        .admin-gate-err {
-            font-size: 0.8rem;
-            color: var(--accent2);
-            background: rgba(255,101,132,0.1);
-            border-radius: 8px;
-            padding: 8px 12px;
-            margin-bottom: 14px;
-            display: none;
-        }
-        .admin-gate-err.show { display: block; }
-        .admin-gate-btn {
-            width: 100%;
-            background: linear-gradient(135deg, var(--accent), #8b5cf6);
-            border: none;
-            border-radius: var(--radius-sm);
-            color: #fff;
-            padding: 14px;
-            font-family: 'Syne', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-        .admin-gate-btn:hover { opacity: 0.9; }
-        .admin-gate-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .admin-gate-cancel {
-            width: 100%;
-            background: transparent;
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            color: var(--muted);
-            padding: 12px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.9rem;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: all 0.15s;
-        }
-        .admin-gate-cancel:hover { border-color: var(--muted); color: var(--text); }
-        .pw-strength-bar { height: 4px; border-radius: 2px; background: var(--border); margin-bottom: 6px; overflow: hidden; display: none; }
-        .pw-strength-bar.show { display: block; }
-        .pw-strength-fill { height: 100%; border-radius: 2px; transition: width 0.3s, background 0.3s; }
-        .pw-char-count { font-size: 0.72rem; color: var(--muted); text-align: right; margin-bottom: 14px; }
-
-        /* Change password tab */
-        .pwd-section { max-width: 400px; margin: 0 auto; }
-        .pwd-section h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; color: var(--text); margin-bottom: 18px; }
-        .pwd-msg { font-size: 0.82rem; padding: 10px 14px; border-radius: 8px; margin-top: 10px; display: none; }
-        .pwd-msg.success { background: rgba(67,224,184,0.12); color: var(--accent3); display: block; }
-        .pwd-msg.error { background: rgba(255,101,132,0.12); color: var(--accent2); display: block; }
-
-        /* Loading spinner for gate */
-        .gate-loading {
-            display: none;
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
-        .gate-loading.show { display: block; }
-        .spinner {
-            width: 36px; height: 36px;
-            border: 3px solid var(--border);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 0.7s linear infinite;
-            margin: 0 auto 14px;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
 
         footer { border-top: 1px solid var(--border); padding: 24px 20px; text-align: center; color: var(--muted); font-size: 0.8rem; line-height: 1.8; }
-        footer a { color: var(--accent); text-decoration: none; }
-        .admin-link { opacity: 0.4; font-size: 0.7rem; text-decoration: none; color: var(--text); display: inline-block; margin-top: 10px; cursor: pointer; transition: opacity 0.2s; }
-        .admin-link:hover { opacity: 1; }
 
         @media (max-width: 600px) {
             .hero-title { font-size: 2rem; }
@@ -855,10 +195,6 @@
             .add-btn { padding: 8px 12px; font-size: 0.78rem; }
             .header-actions { gap: 6px; }
             .cart-btn { padding: 8px 12px; font-size: 0.8rem; }
-            .lp-edit-grid { grid-template-columns: 1fr; }
-            .admin-tabs { gap: 4px; }
-            .admin-tab { font-size: 0.78rem; padding: 5px 8px; }
-            .admin-gate-card { padding: 28px 20px; }
         }
         @media (max-width: 380px) { .product-grid { grid-template-columns: 1fr; } }
     </style>
@@ -871,6 +207,18 @@
                 <div class="tagline">Premium tech, straight to your door.</div>
             </div>
             <div class="header-actions">
+                <div style="position: relative;" id="authDropdownContainer">
+                    <button class="cart-btn" id="authHeaderBtn">👤 Sign In</button>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <div class="profile-header">
+                            <div class="profile-name" id="dropdownName"></div>
+                            <div class="profile-email" id="dropdownEmail"></div>
+                        </div>
+                        <button id="menuEditProfileBtn">✏️ Edit Profile</button>
+                        <button id="menuDeleteProfileBtn" class="danger">🗑️ Delete Profile</button>
+                        <button id="menuSignOutBtn" class="danger">🚪 Sign Out</button>
+                    </div>
+                </div>
                 <button class="cart-btn" id="ordersHeaderBtn">📦 Orders</button>
                 <button class="cart-btn" id="cartHeaderBtn"> 🛒 Cart <span class="cart-count" id="cartCount">0</span> </button>
             </div>
@@ -888,11 +236,70 @@
         <div class="product-grid" id="productGrid"></div>
     </div>
 
-    <a class="wa-float" href="https://wa.me/919068582274" target="_blank" aria-label="WhatsApp">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    </a>
+    <div class="modal-overlay" id="authModalOverlay">
+        <div class="modal" style="max-width: 400px;">
+            <div class="modal-header">
+                <span class="modal-title" id="authTitle">Log In</span>
+                <button class="close-btn" id="closeAuthBtn">✕</button>
+            </div>
+            <div class="modal-body">
+                <div id="authAlert" class="auth-alert" style="margin-bottom:15px;"></div>
+                
+                <form id="loginForm">
+                    <div class="form-group"><label>Email</label><input type="email" name="email" required></div>
+                    <div class="form-group"><label>Password</label><input type="password" name="password" required></div>
+                    <button type="submit" class="submit-btn">Log In</button>
+                    <div class="auth-links">
+                        <a href="#" id="showSignup">Create an account</a> | 
+                        <a href="#" id="showReset" class="muted-link">Forgot Password?</a>
+                    </div>
+                </form>
 
-    <!-- Cart Drawer -->
+                <form id="signupForm" style="display:none;">
+                    <div style="display: flex; gap: 10px; margin-bottom: 14px;">
+                        <div class="form-group" style="margin-bottom:0; flex:1;"><label>First Name</label><input type="text" name="firstName" required></div>
+                        <div class="form-group" style="margin-bottom:0; flex:1;"><label>Last Name</label><input type="text" name="lastName" required></div>
+                    </div>
+                    <div class="form-group"><label>Email</label><input type="email" name="email" required></div>
+                    <div class="form-group"><label>Password</label><input type="password" name="password" required minlength="6" placeholder="Min 6 characters"></div>
+                    <button type="submit" class="submit-btn">Sign Up</button>
+                    <div class="auth-links">
+                        <a href="#" id="showLoginFromSignup">Already have an account? Log In</a>
+                    </div>
+                </form>
+
+                <form id="resetForm" style="display:none;">
+                    <p style="font-size:0.85rem; color:var(--muted); margin-bottom:15px;">Enter your email to receive a secure password reset link.</p>
+                    <div class="form-group"><label>Email</label><input type="email" name="email" required></div>
+                    <button type="submit" class="submit-btn">Send Reset Email</button>
+                    <div class="auth-links">
+                        <a href="#" id="showLoginFromReset">Back to Log In</a>
+                    </div>
+                </form>
+
+                <form id="editProfileForm" style="display:none; text-align: left;">
+                    <div style="display: flex; gap: 10px; margin-bottom: 14px;">
+                        <div class="form-group" style="margin-bottom:0; flex:1;"><label>First Name</label><input type="text" id="editFirstName" required></div>
+                        <div class="form-group" style="margin-bottom:0; flex:1;"><label>Last Name</label><input type="text" id="editLastName" required></div>
+                    </div>
+                    <button type="submit" class="submit-btn" id="saveProfileBtn">Save Changes</button>
+                    <button type="button" class="cancel-btn-outline" id="cancelEditProfileBtn">Cancel</button>
+                </form>
+
+                <form id="deleteProfileForm" style="display:none; text-align: left;">
+                    <h3 style="margin-bottom:5px; color:var(--accent2); font-family:'Syne', sans-serif;">Delete Account</h3>
+                    <p style="font-size:0.85rem; color:var(--muted); margin-bottom:15px;">This action cannot be undone. Please enter your password to confirm.</p>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="deleteProfilePw" required>
+                    </div>
+                    <button type="submit" class="submit-btn" style="background: linear-gradient(135deg, #ff6584, #ff3b3b);" id="confirmDeleteProfileBtn">Delete Permanently</button>
+                    <button type="button" class="cancel-btn-outline" id="cancelDeleteProfileBtn">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="drawer-overlay" id="drawerOverlay"></div>
     <div class="cart-drawer" id="cartDrawer">
         <div class="drawer-header">
@@ -909,44 +316,55 @@
         </div>
     </div>
 
-    <!-- Checkout & Success Modal -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
             <div id="checkoutView">
                 <div class="modal-header">
-                    <span class="modal-title">Place Your Order</span>
+                    <span class="modal-title" id="checkoutModalTitle">Order Summary</span>
                     <button class="close-btn" id="closeCheckoutBtn">✕</button>
                 </div>
                 <div class="modal-body">
-                    <div class="order-summary" id="orderSummary"></div>
-                    <form id="orderForm">
-                        <input type="hidden" name="_subject" id="emailSubject">
-                        <input type="hidden" name="Order Summary" id="hiddenOrderSummary">
-                        <input type="hidden" name="Grand Total" id="hiddenTotal">
-                        <div class="form-group">
-                            <label>Full Name *</label>
-                            <input type="text" name="Customer Name" placeholder="e.g. Rahul Sharma" required>
-                        </div>
-                        <div class="form-group">
-                            <label>WhatsApp / Phone *</label>
-                            <input type="tel" name="Phone Number" placeholder="e.g. 9812345678" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Delivery Address *</label>
-                            <textarea name="Delivery Address" placeholder="Flat no., street, landmark…" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Special Instructions (optional)</label>
-                            <textarea name="Special Instructions" placeholder="Any notes for the shopkeeper…"></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn" id="submitBtn">✦ Confirm Order</button>
-                    </form>
+                    <div id="checkoutStep1">
+                        <div class="fancy-order-summary" id="orderSummary"></div>
+                        <button type="button" class="submit-btn" id="continueToDetailsBtn">Continue to Details →</button>
+                    </div>
+
+                    <div id="checkoutStep2" style="display:none;">
+                        <form id="orderForm">
+                            <input type="hidden" name="_subject" id="emailSubject">
+                            <input type="hidden" name="Order Summary" id="hiddenOrderSummary">
+                            <input type="hidden" name="Grand Total" id="hiddenTotal">
+                            <div class="form-group">
+                                <label>Full Name *</label>
+                                <input type="text" name="Customer Name" placeholder="e.g. Rahul Sharma" required>
+                            </div>
+                            <div class="form-group">
+                                <label>WhatsApp / Phone *</label>
+                                <input type="tel" name="Phone Number" placeholder="e.g. 9812345678" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Delivery Address *</label>
+                                <textarea name="Delivery Address" placeholder="Flat no., street, landmark…" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Special Instructions (optional)</label>
+                                <textarea name="Special Instructions" placeholder="Any notes for the shopkeeper…"></textarea>
+                            </div>
+                            <div style="display:flex; gap:10px;">
+                                <button type="button" class="cancel-btn-outline" id="backToSummaryBtn" style="margin-top:4px;">← Back</button>
+                                <button type="submit" class="submit-btn" id="submitBtn">✦ Confirm Order</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
+
             <div class="success-screen" id="successView">
-                <div class="success-icon">✓</div>
+                <div class="success-icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
                 <div class="success-title">Order Placed!</div>
-                <p class="success-sub">Your order has been received. <strong>Shopify</strong> will contact you on WhatsApp to confirm availability and delivery.</p>
+                <p class="success-sub">Your order has been securely received. <strong>Shopify</strong> will contact you on WhatsApp shortly to confirm your delivery.</p>
                 <a class="wa-btn" href="https://wa.me/919068582274" target="_blank">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Chat on WhatsApp
                 </a>
@@ -954,7 +372,6 @@
         </div>
     </div>
 
-    <!-- Custom Confirmation Modal -->
     <div class="confirm-modal-overlay" id="confirmModalOverlay">
         <div class="confirm-modal">
             <div class="confirm-msg" id="confirmMsg">Are you sure?</div>
@@ -965,7 +382,6 @@
         </div>
     </div>
 
-    <!-- Buyer Order History Modal -->
     <div class="modal-overlay" id="ordersModalOverlay">
         <div class="modal">
             <div class="modal-header">
@@ -976,159 +392,13 @@
         </div>
     </div>
 
-    <!-- Admin Gate (Password Setup / Login) -->
-    <div class="admin-gate" id="adminGate">
-        <div class="admin-gate-card">
-            <!-- Loading state -->
-            <div class="gate-loading" id="gateLoading">
-                <div class="spinner"></div>
-                Connecting to Database…
-            </div>
-
-            <!-- Setup mode: first time -->
-            <div id="gateSetupView" style="display:none;">
-                <div class="admin-gate-icon">🔐</div>
-                <div class="admin-gate-title">Set Admin Password</div>
-                <div class="admin-gate-sub">No password has been set yet. Create a secure password to protect your admin portal. This will be saved to Firebase and work across all devices.</div>
-                <div class="admin-gate-input-wrap">
-                    <input class="admin-gate-input" type="password" id="setupPw1" placeholder="Create password" maxlength="12" autocomplete="new-password">
-                    <button class="pw-toggle" type="button" onclick="togglePwVis('setupPw1',this)">👁️</button>
-                </div>
-                <div class="pw-strength-bar" id="strengthBar1">
-                    <div class="pw-strength-fill" id="strengthFill1"></div>
-                </div>
-                <div class="admin-gate-input-wrap">
-                    <input class="admin-gate-input" type="password" id="setupPw2" placeholder="Confirm password" maxlength="12" autocomplete="new-password">
-                    <button class="pw-toggle" type="button" onclick="togglePwVis('setupPw2',this)">👁️</button>
-                </div>
-                <div class="pw-char-count" id="setupCharCount">0 / 12 characters</div>
-                <div class="admin-gate-hint">Max 12 characters. Letters, numbers and special characters (!@#$%^&* etc.) allowed.</div>
-                <div class="admin-gate-err" id="setupErr"></div>
-                <button class="admin-gate-btn" id="setupConfirmBtn">🔐 Set Password & Enter</button>
-                <button class="admin-gate-cancel" id="gateSetupCancelBtn">Cancel</button>
-            </div>
-
-            <!-- Login mode: password already set -->
-            <div id="gateLoginView" style="display:none;">
-                <div class="admin-gate-icon">🛡️</div>
-                <div class="admin-gate-title">Admin Portal</div>
-                <div class="admin-gate-sub">Enter your admin password to access the dashboard.</div>
-                <div class="admin-gate-input-wrap">
-                    <input class="admin-gate-input" type="password" id="loginPw" placeholder="Enter password" maxlength="12" autocomplete="current-password">
-                    <button class="pw-toggle" type="button" onclick="togglePwVis('loginPw',this)">👁️</button>
-                </div>
-                <div class="admin-gate-err" id="loginErr"></div>
-                <button class="admin-gate-btn" id="loginConfirmBtn">→ Enter Admin Portal</button>
-                <button class="admin-gate-cancel" id="gateLoginCancelBtn">Cancel</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Admin Portal Modal -->
-    <div class="modal-overlay" id="adminModalOverlay">
-        <div class="modal">
-            <div class="modal-header">
-                <span class="modal-title">Admin Dashboard</span>
-                <button class="close-btn" id="closeAdminBtn">✕</button>
-            </div>
-            <div class="modal-body">
-                <div class="admin-tabs">
-                    <button class="admin-tab active" id="tabBtnOrders">📦 Orders</button>
-                    <button class="admin-tab" id="tabBtnAddProduct">➕ Add Product</button>
-                    <button class="admin-tab" id="tabBtnListedProducts">📋 Listed Products</button>
-                    <button class="admin-tab" id="tabBtnPassword">🔑 Password</button>
-                </div>
-
-                <!-- Orders View -->
-                <div id="adminOrdersList"></div>
-
-                <!-- Add Product View -->
-                <div id="adminAddProductPanel" style="display:none;">
-                    <div class="order-history-card" style="max-width:600px;margin:0 auto;">
-                        <h3 style="margin-bottom:15px;font-family:'Syne',sans-serif;font-size:1.1rem;color:var(--text);">Add New Product</h3>
-                        <form id="addProductForm">
-                            <div class="form-group">
-                                <label>Product Name *</label>
-                                <input type="text" name="name" placeholder="e.g. Sony WH-1000XM5" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Price (₹) *</label>
-                                <input type="number" name="price" min="0" step="0.01" placeholder="e.g. 29990" required>
-                            </div>
-                            <div class="form-group">
-                                <label>No. of Units (Stock) *</label>
-                                <input type="number" name="units" min="0" placeholder="e.g. 50" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Category *</label>
-                                <input type="text" name="category" placeholder="e.g. Headphones" required>
-                            </div>
-                            
-                            <!-- Toggle for Image Source -->
-                            <div class="form-group">
-                                <label style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                                    <span>Product Image *</span>
-                                </label>
-                                <div class="img-toggle">
-                                    <label><input type="radio" name="imgSource" value="url" checked> Image URL</label>
-                                    <label><input type="radio" name="imgSource" value="file"> Upload File</label>
-                                </div>
-                                <input type="url" name="image" id="imageUrlInput" placeholder="https://example.com/image.jpg" required>
-                                <input type="file" name="imageFile" id="imageFileInput" accept="image/*" style="display:none;">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Product Description (optional)</label>
-                                <textarea name="description" placeholder="Short description, features, specifications..."></textarea>
-                            </div>
-                            <button type="submit" class="submit-btn" id="addProductBtn">✦ Add Product to Store</button>
-                        </form>
-                    </div>
-                </div>
-
-                <!-- Listed Products View -->
-                <div id="adminListedProductsPanel" style="display:none;">
-                    <div class="lp-search-bar">
-                        <input type="text" id="lpSearchInput" placeholder="Search by name or Product ID…">
-                    </div>
-                    <div id="lpProductList"></div>
-                </div>
-
-                <!-- Change Password View -->
-                <div id="adminPasswordPanel" style="display:none;">
-                    <div class="pwd-section">
-                        <h3>Change Admin Password</h3>
-                        <div class="form-group">
-                            <label>Current Password *</label>
-                            <input type="password" id="pwdCurrent" placeholder="Enter current password" maxlength="12">
-                        </div>
-                        <div class="form-group">
-                            <label>New Password * (max 12 chars)</label>
-                            <input type="password" id="pwdNew" placeholder="Enter new password" maxlength="12">
-                        </div>
-                        <div class="form-group">
-                            <label>Confirm New Password *</label>
-                            <input type="password" id="pwdConfirm" placeholder="Re-enter new password" maxlength="12">
-                        </div>
-                        <button class="submit-btn" id="changePwdBtn">🔑 Update Password</button>
-                        <div class="pwd-msg" id="pwdMsg"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <footer>
         <strong>Shopify</strong> — Koramangala, Bangalore<br>
         📞 <a href="tel:+919068582274">+91 90685 82274</a> &nbsp;|&nbsp; ✉️ <a href="mailto:smilerashmijain@gmail.com">smilerashmijain@gmail.com</a><br>
         <span style="opacity:0.5;font-size:0.72rem;margin-top:8px;display:block">Orders confirmed via WhatsApp. Payments handled offline.</span>
-        <br><span class="admin-link" id="adminPortalLink">Admin Portal</span>
     </footer>
 
     <script>
-        // ============================================================
-        // BULLETPROOF STORAGE SCANNER
-        // ============================================================
         function safeParseStorage(key, fallback) {
             try {
                 const val = localStorage.getItem(key);
@@ -1137,14 +407,9 @@
                 if (Array.isArray(fallback) && !Array.isArray(parsed)) return fallback;
                 if (typeof fallback === 'object' && !Array.isArray(fallback) && typeof parsed !== 'object') return fallback;
                 return parsed || fallback;
-            } catch(e) {
-                return fallback;
-            }
+            } catch(e) { return fallback; }
         }
 
-        // ============================================================
-        // HELPERS (INCLUDING AUTO-COMPRESSOR)
-        // ============================================================
         function escHtml(s) {
             if (!s) return '';
             return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -1155,97 +420,15 @@
         }
         function fmt(n) { return '₹' + Number(n).toLocaleString('en-IN'); }
 
-        // Invisible auto-compressor for file uploads (so they fit in Firestore without storage rules!)
-        function compressImage(file, maxWidth = 800, maxHeight = 800) {
-            return new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = (event) => {
-                    const img = new Image();
-                    img.src = event.target.result;
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        let width = img.width;
-                        let height = img.height;
-                        if (width > maxWidth) { height = Math.round(height * maxWidth / width); width = maxWidth; }
-                        if (height > maxHeight) { width = Math.round(width * maxHeight / height); height = maxHeight; }
-                        canvas.width = width; canvas.height = height;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0, width, height);
-                        resolve(canvas.toDataURL('image/jpeg', 0.7)); // 70% quality JPEG
-                    };
-                };
-            });
-        }
-
-        // ---- Unique ID generator ----
-        function getAllExistingUIDs() {
-            const ids = new Set();
-            const map = safeParseStorage('shopify_default_uids', {});
-            Object.values(map).forEach(v => ids.add(v));
-            
-            const dynLocal = safeParseStorage('shopify_products_local', []);
-            dynLocal.forEach(p => { if (p && p.uid) ids.add(p.uid); });
-
-            if (typeof dynamicProducts !== 'undefined' && Array.isArray(dynamicProducts)) {
-                dynamicProducts.forEach(p => { if (p && p.uid) ids.add(p.uid); });
-            }
-            return ids;
-        }
-
-        function genUID() {
-            const existing = getAllExistingUIDs();
-            const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            let uid;
-            do {
-                const l1 = LETTERS[Math.floor(Math.random() * 26)];
-                const l2 = LETTERS[Math.floor(Math.random() * 26)];
-                const nums = String(Math.floor(10000 + Math.random() * 90000));
-                uid = l1 + l2 + nums;
-            } while (existing.has(uid));
-            return uid;
-        }
-
-        // ============================================================
-        // DEFAULT PRODUCTS & STATE
-        // ============================================================
-        const RAW_DEFAULT = []; 
-
-        let defaultUIDMap = safeParseStorage('shopify_default_uids', {});
-        const hasOldFormat = Object.values(defaultUIDMap).some(v => String(v).startsWith('PROD-'));
-        if (hasOldFormat) { defaultUIDMap = {}; }
-        RAW_DEFAULT.forEach(p => { if (!defaultUIDMap[p._key]) defaultUIDMap[p._key] = genUID(); });
-        localStorage.setItem('shopify_default_uids', JSON.stringify(defaultUIDMap));
-
-        const DEFAULT_PRODUCTS = RAW_DEFAULT.map(p => ({
-            uid: defaultUIDMap[p._key], isDefault: true, outOfStock: false, ...p
-        }));
-
         let dynamicProducts = safeParseStorage('shopify_products_local', []);
-        let dynMigrated = false;
-        dynamicProducts.forEach(p => { if (p && (!p.uid || String(p.uid).startsWith('PROD-'))) { p.uid = genUID(); dynMigrated = true; } });
-        if (dynMigrated) localStorage.setItem('shopify_products_local', JSON.stringify(dynamicProducts));
-
         let oosMap = safeParseStorage('shopify_oos_map', {});
         let defaultEdits = safeParseStorage('shopify_default_edits', {});
 
-        function saveOOSMap() { localStorage.setItem('shopify_oos_map', JSON.stringify(oosMap)); }
-        function saveDynamic() { localStorage.setItem('shopify_products_local', JSON.stringify(dynamicProducts)); }
-        function saveDefaultEdits() { localStorage.setItem('shopify_default_edits', JSON.stringify(defaultEdits)); }
-
+        // Storefront only relies on dynamic products downloaded from DB (no defaults)
         function getAllProducts() {
-            const dynamicUids = new Set(dynamicProducts.map(p => p && p.uid));
-            const activeDefaults = DEFAULT_PRODUCTS.filter(p => !dynamicUids.has(p.uid));
-            return [
-                ...activeDefaults.map(p => {
-                    const edits = defaultEdits[p.uid] || {};
-                    return { ...p, ...edits, outOfStock: !!oosMap[p.uid], isDefault: true };
-                }),
-                ...dynamicProducts.filter(Boolean).map(p => ({ ...p, outOfStock: !!oosMap[p.uid] }))
-            ];
+            return dynamicProducts.filter(Boolean).map(p => ({ ...p, outOfStock: !!oosMap[p.uid] }));
         }
 
-        let ADMIN_PASS = null;
         let cart = safeParseStorage('shopify_cart', []);
         function saveCart() { localStorage.setItem('shopify_cart', JSON.stringify(cart)); }
         function getCartItem(uid) { return cart.find(i => i && i.uid === uid); }
@@ -1254,12 +437,10 @@
 
         let cloudOrders = safeParseStorage('shopify_orders_local', []);
         let isOfflineMode = true;
-        let currentUser = { uid: 'local-user' };
+        let currentUser = null; 
         function saveLocalOrders() { localStorage.setItem('shopify_orders_local', JSON.stringify(cloudOrders)); }
 
-        // ============================================================
-        // FIREBASE SETUP
-        // ============================================================
+        // ---- Firebase Initialization ----
         let _fbHelpers = null;
         (async () => {
             try {
@@ -1275,42 +456,49 @@
                 const APP_ID = "shopify-main-v1";
 
                 const { initializeApp } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js");
-                const { getAuth, signInAnonymously, onAuthStateChanged } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js");
-                const { getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot, setDoc, getDoc } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js");
+                const { getAuth, signInAnonymously, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, signOut, updateProfile, EmailAuthProvider, reauthenticateWithCredential, deleteUser } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js");
+                const { getFirestore, collection, addDoc, updateDoc, doc, onSnapshot } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js");
 
                 const app = initializeApp(firebaseConfig);
                 const auth = getAuth(app);
                 const db = getFirestore(app);
                 isOfflineMode = false;
 
-                try {
-                    await signInAnonymously(auth);
-                } catch (authErr) {
-                    console.error("Firebase Auth Error:", authErr);
-                    throw authErr;
-                }
-
-                _fbHelpers = { db, APP_ID, addDoc, updateDoc, deleteDoc, doc, collection, setDoc, getDoc };
-                window._fbHelpers = _fbHelpers;
-
+                _fbHelpers = { db, APP_ID, auth, addDoc, updateDoc, doc, collection, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, signOut, signInAnonymously, updateProfile, EmailAuthProvider, reauthenticateWithCredential, deleteUser };
+                
                 onAuthStateChanged(auth, user => {
+                    if (!user) {
+                        signInAnonymously(auth).catch(e => console.warn(e));
+                        return;
+                    }
                     currentUser = user;
-                    if (!user) return;
+
+                    const authBtn = document.getElementById('authHeaderBtn');
+                    if (user && !user.isAnonymous) {
+                        const displayName = user.displayName || '';
+                        const firstName = displayName.split(' ')[0] || user.email.split('@')[0];
+                        if(authBtn) authBtn.innerHTML = `👤 ${escHtml(firstName)} ▾`;
+                        
+                        // NEW: Update Dropdown Info
+                        const dropName = document.getElementById('dropdownName');
+                        const dropEmail = document.getElementById('dropdownEmail');
+                        if (dropName) dropName.textContent = displayName || firstName;
+                        if (dropEmail) dropEmail.textContent = user.email;
+                        
+                        const nameParts = displayName.split(' ');
+                        document.getElementById('editFirstName').value = nameParts[0] || '';
+                        document.getElementById('editLastName').value = nameParts.slice(1).join(' ') || '';
+                        
+                    } else {
+                        if(authBtn) authBtn.innerHTML = `👤 Sign In`;
+                    }
 
                     onSnapshot(doc(db, 'artifacts', APP_ID, 'public', 'data', 'config', 'adminSettings'), snap => {
                         if (snap.exists()) {
                             const d = snap.data();
-                            if (d.password) {
-                                ADMIN_PASS = d.password;
-                                localStorage.setItem('shopify_admin_pass', ADMIN_PASS);
-                            }
-                            if (d.oosMap) { oosMap = d.oosMap; saveOOSMap(); }
-                            if (d.defaultEdits) { defaultEdits = d.defaultEdits; saveDefaultEdits(); }
-                            buildFilters();
-                            renderProducts();
-                            if (document.getElementById('adminListedProductsPanel')?.style.display !== 'none') {
-                                setTimeout(() => renderListedProducts(), 50);
-                            }
+                            if (d.oosMap) oosMap = d.oosMap;
+                            if (d.defaultEdits) defaultEdits = d.defaultEdits;
+                            buildFilters(); renderProducts();
                         }
                     });
 
@@ -1318,24 +506,17 @@
                         cloudOrders = snap.docs.map(d => ({ fbId: d.id, ...d.data() }));
                         cloudOrders.sort((a, b) => b.timestamp - a.timestamp);
                         if (document.getElementById('ordersModalOverlay')?.classList.contains('open')) renderOrders();
-                        const ao = document.getElementById('adminOrdersList');
-                        if (document.getElementById('adminModalOverlay')?.classList.contains('open') && ao && ao.style.display !== 'none') renderAdminOrders();
                     });
 
                     onSnapshot(collection(db, 'artifacts', APP_ID, 'public', 'data', 'products'), snap => {
                         dynamicProducts = snap.docs.map(d => ({ fbId: d.id, ...d.data() }));
-                        buildFilters();
-                        renderProducts();
-                        if (document.getElementById('adminListedProductsPanel')?.style.display !== 'none') {
-                            setTimeout(() => renderListedProducts(), 50);
-                        }
+                        buildFilters(); renderProducts();
                     });
                 });
             } catch (e) {
                 console.warn('Firebase running in offline mode:', e.message);
                 isOfflineMode = true;
-                const cached = localStorage.getItem('shopify_admin_pass');
-                if (cached) ADMIN_PASS = cached;
+                buildFilters(); renderProducts();
             }
         })();
 
@@ -1350,6 +531,53 @@
         }
 
         // ============================================================
+        // CUSTOMER ACCOUNTS
+        // ============================================================
+        function openAuthModal() {
+            document.getElementById('authModalOverlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+            clearAuthAlert();
+        }
+        function closeAuthModal() {
+            document.getElementById('authModalOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        function showAuthAlert(msg, isSuccess = false) {
+            const alertEl = document.getElementById('authAlert');
+            alertEl.textContent = msg;
+            alertEl.classList.add('show');
+            alertEl.style.backgroundColor = isSuccess ? 'rgba(67, 224, 184, 0.15)' : 'rgba(255, 101, 132, 0.1)';
+            alertEl.style.color = isSuccess ? 'var(--accent3)' : 'var(--accent2)';
+        }
+        function clearAuthAlert() { document.getElementById('authAlert').classList.remove('show'); }
+
+        function showAuthView(viewName) {
+            ['loginForm', 'signupForm', 'resetForm', 'editProfileForm', 'deleteProfileForm'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = 'none';
+            });
+            clearAuthAlert();
+            
+            const title = document.getElementById('authTitle');
+            if (viewName === 'login') {
+                document.getElementById('loginForm').style.display = 'block';
+                if(title) title.textContent = 'Log In';
+            } else if (viewName === 'signup') {
+                document.getElementById('signupForm').style.display = 'block';
+                if(title) title.textContent = 'Create Account';
+            } else if (viewName === 'reset') {
+                document.getElementById('resetForm').style.display = 'block';
+                if(title) title.textContent = 'Reset Password';
+            } else if (viewName === 'edit_profile') {
+                document.getElementById('editProfileForm').style.display = 'block';
+                if(title) title.textContent = 'Edit Profile';
+            } else if (viewName === 'delete_profile') {
+                document.getElementById('deleteProfileForm').style.display = 'block';
+                if(title) title.textContent = 'Delete Profile';
+            }
+        }
+
+        // ============================================================
         // FILTERS & PRODUCT RENDERING
         // ============================================================
         let activeFilter = 'All';
@@ -1359,9 +587,7 @@
             const cats = ['All', ...new Set(PRODUCTS.filter(Boolean).map(p => p.category))];
             const fw = document.getElementById('filterWrap');
             if(fw) {
-                fw.innerHTML = cats.map(c =>
-                    `<button class="filter-btn ${c === activeFilter ? 'active' : ''}">${c}</button>`
-                ).join('');
+                fw.innerHTML = cats.map(c => `<button class="filter-btn ${c === activeFilter ? 'active' : ''}">${c}</button>`).join('');
                 document.querySelectorAll('.filter-btn').forEach(btn => {
                     btn.addEventListener('click', () => {
                         activeFilter = btn.textContent;
@@ -1409,10 +635,7 @@
         function updateCartUI() {
             const qty = getTotalQty();
             const el = document.getElementById('cartCount');
-            if(el) {
-                el.textContent = qty;
-                el.classList.toggle('show', qty > 0);
-            }
+            if(el) { el.textContent = qty; el.classList.toggle('show', qty > 0); }
             const gt = document.getElementById('grandTotal');
             if(gt) gt.textContent = fmt(getTotal());
             const cf = document.getElementById('cartFooter');
@@ -1423,44 +646,36 @@
         // CART & CHECKOUT
         // ============================================================
         function addToCart(uid) {
+            if (!currentUser || currentUser.isAnonymous) {
+                openAuthModal();
+                showAuthView('login');
+                showAuthAlert("Please log in to add items to your cart.");
+                return;
+            }
+
             const PRODUCTS = getAllProducts();
             const p = PRODUCTS.find(x => x && x.uid === uid);
             if (!p || p.outOfStock) return;
             const ex = getCartItem(uid);
             
-            // Check stock units if tracking
             if (p.units !== undefined) {
                 const currentQtyInCart = ex ? ex.qty : 0;
-                if (currentQtyInCart >= p.units) {
-                    alert(`Only ${p.units} units available in stock!`);
-                    return;
-                }
+                if (currentQtyInCart >= p.units) { alert(`Only ${p.units} units available in stock!`); return; }
             }
 
             if (ex) { ex.qty++; } else { cart.push({ uid, name: p.name, price: p.price, image: p.image, qty: 1 }); }
-            saveCart();
-            updateCartUI();
+            saveCart(); updateCartUI();
             const btn = document.getElementById('cartHeaderBtn');
-            if(btn) {
-                btn.style.borderColor = 'var(--accent)';
-                btn.style.transform = 'scale(1.05)';
-                setTimeout(() => { btn.style.borderColor = ''; btn.style.transform = ''; }, 300);
-            }
+            if(btn) { btn.style.borderColor = 'var(--accent)'; btn.style.transform = 'scale(1.05)'; setTimeout(() => { btn.style.borderColor = ''; btn.style.transform = ''; }, 300); }
         }
 
         function changeQty(uid, delta) {
             const item = getCartItem(uid);
             if (!item) return;
-            
             if (delta > 0) {
-                const PRODUCTS = getAllProducts();
-                const p = PRODUCTS.find(x => x && x.uid === uid);
-                if (p && p.units !== undefined && item.qty >= p.units) {
-                    alert(`Only ${p.units} units available in stock!`);
-                    return;
-                }
+                const p = getAllProducts().find(x => x && x.uid === uid);
+                if (p && p.units !== undefined && item.qty >= p.units) { alert(`Only ${p.units} units available in stock!`); return; }
             }
-
             item.qty += delta;
             if (item.qty <= 0) cart = cart.filter(i => i && i.uid !== uid);
             saveCart(); updateCartUI(); renderCartDrawer();
@@ -1493,51 +708,58 @@
                     </div>
                     <button class="remove-btn" data-removeuid="${item.uid}">✕</button>
                 </div>`).join('');
-            body.querySelectorAll('[data-qtyuid]').forEach(btn => {
-                btn.addEventListener('click', () => changeQty(btn.dataset.qtyuid, parseInt(btn.dataset.delta)));
-            });
-            body.querySelectorAll('[data-removeuid]').forEach(btn => {
-                btn.addEventListener('click', () => removeItem(btn.dataset.removeuid));
-            });
+            body.querySelectorAll('[data-qtyuid]').forEach(btn => { btn.addEventListener('click', () => changeQty(btn.dataset.qtyuid, parseInt(btn.dataset.delta))); });
+            body.querySelectorAll('[data-removeuid]').forEach(btn => { btn.addEventListener('click', () => removeItem(btn.dataset.removeuid)); });
         }
 
-        function openCart() {
-            renderCartDrawer();
-            document.getElementById('cartDrawer')?.classList.add('open');
-            document.getElementById('drawerOverlay')?.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeCart() {
-            document.getElementById('cartDrawer')?.classList.remove('open');
-            document.getElementById('drawerOverlay')?.classList.remove('open');
-            document.body.style.overflow = '';
-        }
+        function openCart() { renderCartDrawer(); document.getElementById('cartDrawer')?.classList.add('open'); document.getElementById('drawerOverlay')?.classList.add('open'); document.body.style.overflow = 'hidden'; }
+        function closeCart() { document.getElementById('cartDrawer')?.classList.remove('open'); document.getElementById('drawerOverlay')?.classList.remove('open'); document.body.style.overflow = ''; }
 
         function openCheckout() {
+            if (!currentUser || currentUser.isAnonymous) {
+                openAuthModal();
+                showAuthView('login');
+                showAuthAlert("Please log in to proceed to checkout.");
+                return;
+            }
+
             closeCart();
-            let summaryHTML = '<div class="order-summary-title">Order Summary</div>';
+            
+            let summaryHTML = '';
             let summaryText = '';
             cart.forEach(item => {
-                summaryHTML += `<div class="order-line"><span>${escHtml(item.name)} × ${item.qty}</span><span>${fmt(item.price * item.qty)}</span></div>`;
+                summaryHTML += `
+                    <div class="fancy-order-item">
+                        <img src="${item.image}" class="fancy-item-img" alt="${escHtml(item.name)}">
+                        <div class="fancy-item-info">
+                            <div class="fancy-item-name">${escHtml(item.name)}</div>
+                            <div class="fancy-item-qty">Qty: ${item.qty}</div>
+                        </div>
+                        <div class="fancy-item-price">${fmt(item.price * item.qty)}</div>
+                    </div>`;
                 summaryText += `${item.name} x${item.qty} - ${fmt(item.price * item.qty)}\n`;
             });
-            summaryHTML += `<div class="order-line total"><span>Grand Total</span><span>${fmt(getTotal())}</span></div>`;
-            const os = document.getElementById('orderSummary'); if(os) os.innerHTML = summaryHTML;
-            const hos = document.getElementById('hiddenOrderSummary'); if(hos) hos.value = summaryText;
-            const ht = document.getElementById('hiddenTotal'); if(ht) ht.value = fmt(getTotal());
-            const es = document.getElementById('emailSubject'); if(es) es.value = `New Order - Shopify (${fmt(getTotal())})`;
+            summaryHTML += `
+                <div class="fancy-total-row">
+                    <span class="fancy-total-label">Grand Total</span>
+                    <span class="fancy-total-amount">${fmt(getTotal())}</span>
+                </div>`;
             
-            const cv = document.getElementById('checkoutView'); if(cv) cv.style.display = '';
-            const sv = document.getElementById('successView'); if(sv) sv.style.display = 'none';
+            document.getElementById('orderSummary').innerHTML = summaryHTML;
+            document.getElementById('hiddenOrderSummary').value = summaryText;
+            document.getElementById('hiddenTotal').value = fmt(getTotal());
+            document.getElementById('emailSubject').value = `New Order - Shopify (${fmt(getTotal())})`;
+            
+            document.getElementById('checkoutStep1').style.display = 'block';
+            document.getElementById('checkoutStep2').style.display = 'none';
+            document.getElementById('checkoutModalTitle').textContent = 'Order Summary';
+            
+            document.getElementById('checkoutView').style.display = '';
+            document.getElementById('successView').style.display = 'none';
             document.getElementById('modalOverlay')?.classList.add('open');
             document.body.style.overflow = 'hidden';
         }
-
-        function closeCheckout() {
-            document.getElementById('modalOverlay')?.classList.remove('open');
-            document.body.style.overflow = '';
-        }
+        function closeCheckout() { document.getElementById('modalOverlay')?.classList.remove('open'); document.body.style.overflow = ''; }
 
         // ============================================================
         // ORDER HISTORY
@@ -1577,9 +799,7 @@
                         ${isActive ? `<button class="cancel-order-btn" data-fbid="${order.fbId || ''}" data-orderid="${order.orderId}" data-cname="${escAttr(order.customerName)}" data-cphone="${escAttr(order.customerPhone)}">Cancel Order</button>` : ''}
                     </div>`;
             }).join('');
-            body.querySelectorAll('.cancel-order-btn').forEach(btn => {
-                btn.addEventListener('click', () => cancelOrder(btn.dataset.fbid, btn.dataset.orderid, btn.dataset.cname, btn.dataset.cphone));
-            });
+            body.querySelectorAll('.cancel-order-btn').forEach(btn => { btn.addEventListener('click', () => cancelOrder(btn.dataset.fbid, btn.dataset.orderid, btn.dataset.cname, btn.dataset.cphone)); });
         }
 
         async function cancelOrder(fbId, orderId, customerName, customerPhone) {
@@ -1589,7 +809,6 @@
                 const ord = cloudOrders.find(o => o && o.orderId === orderId);
                 if (ord) ord.status = 'Cancelled';
                 saveLocalOrders(); renderOrders();
-                if (document.getElementById('adminModalOverlay')?.classList.contains('open')) renderAdminOrders();
             } else {
                 try {
                     const { db, APP_ID, updateDoc, doc } = _fbHelpers;
@@ -1597,471 +816,9 @@
                 } catch (e) { alert('Failed to cancel. Check connection.'); return; }
             }
             try {
-                const fd = new FormData();
-                fd.append('_subject', `CANCELLED ORDER - ${orderId}`);
-                fd.append('Order ID', orderId); fd.append('Customer', customerName);
-                fd.append('Phone', customerPhone); fd.append('Status', 'Customer requested cancellation.');
+                const fd = new FormData(); fd.append('_subject', `CANCELLED ORDER - ${orderId}`); fd.append('Order ID', orderId); fd.append('Customer', customerName); fd.append('Phone', customerPhone); fd.append('Status', 'Customer requested cancellation.');
                 await fetch('https://formspree.io/f/xeeplold', { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
             } catch(e) {}
-        }
-
-        // ============================================================
-        // PASSWORD HELPERS
-        // ============================================================
-        window.togglePwVis = function(inputId, btn) {
-            const el = document.getElementById(inputId);
-            if(el) {
-                if (el.type === 'password') { el.type = 'text'; btn.textContent = '🙈'; }
-                else { el.type = 'password'; btn.textContent = '👁️'; }
-            }
-        };
-
-        function pwStrength(pw) {
-            let score = 0;
-            if (pw.length >= 6) score++;
-            if (pw.length >= 10) score++;
-            if (/[A-Z]/.test(pw)) score++;
-            if (/[0-9]/.test(pw)) score++;
-            if (/[^A-Za-z0-9]/.test(pw)) score++;
-            return score;
-        }
-
-        async function saveAdminSettingsToFirebase(updates) {
-            if (isOfflineMode || !_fbHelpers) return;
-            try {
-                const { db, APP_ID, doc, setDoc } = _fbHelpers;
-                await setDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'config', 'adminSettings'), updates, { merge: true });
-            } catch(e) { console.error('Failed to save admin settings:', e); }
-        }
-
-        // ============================================================
-        // ADMIN GATE LOGIC
-        // ============================================================
-        async function openAdminGate() {
-            const gate = document.getElementById('adminGate');
-            if(!gate) return;
-            gate.classList.add('open');
-            document.body.style.overflow = 'hidden';
-
-            const gateLoading = document.getElementById('gateLoading');
-            const gateSetupView = document.getElementById('gateSetupView');
-            const gateLoginView = document.getElementById('gateLoginView');
-
-            if(gateLoading) gateLoading.classList.add('show');
-            if(gateSetupView) gateSetupView.style.display = 'none';
-            if(gateLoginView) gateLoginView.style.display = 'none';
-
-            let waited = 0;
-            while (isOfflineMode === true && waited < 20) {
-                await new Promise(r => setTimeout(r, 100));
-                waited++;
-            }
-
-            if (!isOfflineMode && _fbHelpers) {
-                try {
-                    const { db, APP_ID, doc, getDoc } = _fbHelpers;
-                    const adminDoc = await getDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'config', 'adminSettings'));
-                    if (adminDoc.exists() && adminDoc.data().password) {
-                        ADMIN_PASS = adminDoc.data().password;
-                        localStorage.setItem('shopify_admin_pass', ADMIN_PASS);
-                    }
-                } catch(e) {}
-            }
-
-            const cachedPass = localStorage.getItem('shopify_admin_pass');
-            if(gateLoading) gateLoading.classList.remove('show');
-
-            if (!ADMIN_PASS && !cachedPass) {
-                if(gateSetupView) gateSetupView.style.display = 'block';
-                const sp1 = document.getElementById('setupPw1'); if(sp1) sp1.value = '';
-                const sp2 = document.getElementById('setupPw2'); if(sp2) sp2.value = '';
-                const sc = document.getElementById('setupCharCount'); if(sc) sc.textContent = '0 / 12 characters';
-                document.getElementById('setupErr')?.classList.remove('show');
-                document.getElementById('strengthBar1')?.classList.remove('show');
-                setTimeout(() => sp1?.focus(), 100);
-            } else {
-                ADMIN_PASS = ADMIN_PASS || cachedPass;
-                if(gateLoginView) gateLoginView.style.display = 'block';
-                const lp = document.getElementById('loginPw'); if(lp) lp.value = '';
-                document.getElementById('loginErr')?.classList.remove('show');
-                setTimeout(() => lp?.focus(), 100);
-            }
-        }
-
-        function closeAdminGate() {
-            document.getElementById('adminGate')?.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-
-        function launchAdminDashboard() {
-            switchAdminTab('orders');
-            document.getElementById('adminModalOverlay')?.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeAdmin() {
-            document.getElementById('adminModalOverlay')?.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-
-        // ============================================================
-        // ADMIN DASHBOARD
-        // ============================================================
-        function switchAdminTab(tab) {
-            const tabs = { orders: 'tabBtnOrders', addProduct: 'tabBtnAddProduct', listedProducts: 'tabBtnListedProducts', password: 'tabBtnPassword' };
-            const panels = { orders: 'adminOrdersList', addProduct: 'adminAddProductPanel', listedProducts: 'adminListedProductsPanel', password: 'adminPasswordPanel' };
-            
-            Object.keys(tabs).forEach(t => {
-                document.getElementById(tabs[t])?.classList.toggle('active', t === tab);
-                const p = document.getElementById(panels[t]);
-                if(p) p.style.display = t === tab ? 'block' : 'none';
-            });
-            
-            if (tab === 'orders') renderAdminOrders();
-            if (tab === 'listedProducts') {
-                const searchInput = document.getElementById('lpSearchInput');
-                if (searchInput) lpSearchQuery = searchInput.value.trim().toLowerCase();
-                setTimeout(() => renderListedProducts(), 50);
-            }
-            if (tab === 'password') clearPwdFields();
-        }
-
-        function renderAdminOrders() {
-            const list = document.getElementById('adminOrdersList');
-            if(!list) return;
-            if (!cloudOrders.length) {
-                list.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">📂</div><p>No orders in the database.</p></div>`;
-                return;
-            }
-            list.innerHTML = cloudOrders.map(order => {
-                const itemsHtml = (order.items || []).map(i => `• ${escHtml(i.name)} (x${i.qty})`).join('<br>');
-                const isCancelled = order.status === 'Cancelled';
-                return `
-                    <div class="order-history-card">
-                        <div class="order-history-header">
-                            <div class="order-id-group">
-                                <span class="order-id">${order.orderId}</span>
-                                <span class="order-date">${order.date}</span>
-                            </div>
-                            <span class="order-status ${getStatusClass(order.status)}">${order.status}</span>
-                        </div>
-                        <div class="order-history-details">
-                            <strong>Customer:</strong> ${escHtml(order.customerName)} (${escHtml(order.customerPhone)})<br>
-                            <strong>Address:</strong> ${escHtml(order.address)}<br>
-                            ${order.instructions ? `<strong>Notes:</strong> ${escHtml(order.instructions)}<br>` : ''}
-                        </div>
-                        <div class="order-history-items">${itemsHtml}</div>
-                        <div class="order-history-total" style="margin-bottom:15px;">
-                            <span>Total:</span><span>${order.totalFormatted}</span>
-                        </div>
-                        <div class="form-group" style="margin-bottom:0;">
-                            <label>Update Delivery Status:</label>
-                            <select data-statusfbid="${order.fbId || order.orderId}" data-statusorderid="${order.orderId}" ${isCancelled ? 'disabled' : ''}>
-                                <option value="Active" ${order.status==='Active'?'selected':''}>Active</option>
-                                <option value="Out for Delivery" ${order.status==='Out for Delivery'?'selected':''}>Out for Delivery</option>
-                                <option value="Delivered" ${order.status==='Delivered'?'selected':''}>Delivered</option>
-                                <option value="Cancelled" ${isCancelled?'selected':''}>Cancelled</option>
-                            </select>
-                        </div>
-                    </div>`;
-            }).join('');
-            list.querySelectorAll('[data-statusfbid]').forEach(sel => {
-                sel.addEventListener('change', () => updateOrderStatus(sel.dataset.statusfbid, sel.dataset.statusorderid, sel.value, sel));
-            });
-        }
-
-        async function updateOrderStatus(fbId, orderId, newStatus, selectEl) {
-            const ord = cloudOrders.find(o => (o.fbId || o.orderId) === fbId);
-            if (newStatus === 'Cancelled') {
-                const ok = await customConfirm("Permanently cancel this order? This cannot be undone.");
-                if (!ok) { if (ord) selectEl.value = ord.status; return; }
-            }
-            if (isOfflineMode || !_fbHelpers) {
-                if (ord) ord.status = newStatus;
-                saveLocalOrders(); renderAdminOrders();
-            } else {
-                try {
-                    const { db, APP_ID, updateDoc, doc } = _fbHelpers;
-                    await updateDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'orders', fbId), { status: newStatus });
-                } catch (e) { alert('Failed to update. Check connection.'); return; }
-            }
-            if (newStatus === 'Cancelled' && ord) {
-                try {
-                    const fd = new FormData();
-                    fd.append('_subject', `CANCELLED ORDER (BY ADMIN) - ${ord.orderId}`);
-                    fd.append('Order ID', ord.orderId); fd.append('Customer', ord.customerName);
-                    fd.append('Phone', ord.customerPhone); fd.append('Status', 'Admin cancelled this order.');
-                    await fetch('https://formspree.io/f/xeeplold', { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
-                } catch(e) {}
-            }
-        }
-
-        // ---- ADD PRODUCT ----
-        function handleAddProduct(e) {
-            e.preventDefault();
-            const btn = document.getElementById('addProductBtn');
-            if(btn) { btn.disabled = true; btn.textContent = 'Adding…'; }
-
-            (async () => {
-                try {
-                    let finalImage = "";
-                    const source = document.querySelector('input[name="imgSource"]:checked').value;
-                    
-                    if (source === 'url') {
-                        finalImage = document.getElementById('imageUrlInput').value;
-                    } else {
-                        const fileInput = document.getElementById('imageFileInput');
-                        if (fileInput.files.length > 0) {
-                            finalImage = await compressImage(fileInput.files[0], 800, 800);
-                        } else {
-                            alert('Please select an image file to upload.');
-                            if(btn) { btn.disabled = false; btn.textContent = '✦ Add Product to Store'; }
-                            return;
-                        }
-                    }
-
-                    const unitsValue = parseInt(this.units.value);
-                    const newProd = {
-                        uid: genUID(), 
-                        name: this.name.value, 
-                        price: parseFloat(this.price.value),
-                        units: isNaN(unitsValue) ? 0 : unitsValue,
-                        category: this.category.value, 
-                        description: this.description.value || '',
-                        image: finalImage, 
-                        outOfStock: unitsValue <= 0, 
-                        timestamp: Date.now()
-                    };
-
-                    if (isOfflineMode || !_fbHelpers) {
-                        dynamicProducts.push(newProd); saveDynamic(); buildFilters(); renderProducts();
-                    } else {
-                        const { db, APP_ID, addDoc, collection } = _fbHelpers;
-                        await addDoc(collection(db, 'artifacts', APP_ID, 'public', 'data', 'products'), newProd);
-                    }
-                    this.reset();
-                    document.getElementById('imageUrlInput').style.display = 'block';
-                    document.getElementById('imageFileInput').style.display = 'none';
-                    alert('Product added successfully!');
-                } catch(err) { 
-                    alert('Failed to add product. Try a smaller image or valid URL.'); 
-                }
-                if(btn) { btn.disabled = false; btn.textContent = '✦ Add Product to Store'; }
-            })();
-        }
-
-        // ---- LISTED PRODUCTS ----
-        function renderListedProducts() {
-            const PRODUCTS = getAllProducts();
-            const q = lpSearchQuery;
-            const filtered = q ? PRODUCTS.filter(p => p.name.toLowerCase().includes(q) || p.uid.toLowerCase().includes(q)) : PRODUCTS;
-            const container = document.getElementById('lpProductList');
-            if(!container) return;
-            
-            if (!filtered.length) {
-                container.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">🔍</div><p>No products found.</p></div>`;
-                return;
-            }
-            container.innerHTML = filtered.map(p => `
-                <div class="lp-product-row ${p.outOfStock ? 'oos-row' : ''}" id="lprow-${p.uid}">
-                    <img class="lp-thumb" src="${p.image}" alt="${escHtml(p.name)}">
-                    <div class="lp-info">
-                        <div class="lp-name">${escHtml(p.name)}</div>
-                        <div class="lp-meta">
-                            <span>₹${Number(p.price).toLocaleString('en-IN')}</span>
-                            <span>${p.units !== undefined ? p.units + ' Units' : 'In Stock'}</span>
-                            <span>${escHtml(p.category)}</span>
-                            <span style="font-family:monospace;font-size:0.7rem;color:var(--muted)">#${p.uid}</span>
-                            ${p.isDefault ? '<span class="lp-default-badge">Default</span>' : ''}
-                            ${p.outOfStock ? '<span class="lp-oos-badge">Out of Stock</span>' : ''}
-                        </div>
-                        <div class="lp-edit-panel" id="lpedit-${p.uid}">
-                            <div class="lp-edit-grid">
-                                <div><label class="lp-edit-label">Name</label><input class="lp-edit-input" id="lpen-${p.uid}" value="${escAttr(p.name)}"></div>
-                                <div><label class="lp-edit-label">Price (₹)</label><input class="lp-edit-input" type="number" id="lpep-${p.uid}" value="${p.price}"></div>
-                                <div><label class="lp-edit-label">Units</label><input class="lp-edit-input" type="number" id="lpeu-${p.uid}" value="${p.units !== undefined ? p.units : 50}"></div>
-                                <div><label class="lp-edit-label">Category</label><input class="lp-edit-input" id="lpec-${p.uid}" value="${escAttr(p.category)}"></div>
-                                <div class="full">
-                                    <label class="lp-edit-label">Update Image (URL or File - leave empty to keep current)</label>
-                                    <div style="display:flex; gap:10px;">
-                                        <input class="lp-edit-input" id="lpei-${p.uid}" placeholder="New Image URL" value="${p.image.startsWith('data:') ? '' : escAttr(p.image)}">
-                                        <input type="file" class="lp-edit-input" id="lpef-${p.uid}" accept="image/*" style="padding:6px;">
-                                    </div>
-                                </div>
-                                <div class="full"><label class="lp-edit-label">Description (optional)</label><textarea class="lp-edit-input" id="lped-${p.uid}" rows="2">${escHtml(p.description || '')}</textarea></div>
-                            </div>
-                            <button class="lp-save-btn" data-saveuid="${p.uid}">💾 Save Changes</button>
-                        </div>
-                    </div>
-                    <div class="lp-actions">
-                        <button class="lp-btn" data-edituid="${p.uid}">✏️ Edit</button>
-                        <button class="lp-btn ${p.outOfStock ? 'oos-active' : ''}" data-oosuid="${p.uid}">${p.outOfStock ? '✅ In Stock' : '🚫 Out of Stock'}</button>
-                        ${!p.isDefault ? `<button class="lp-btn danger" data-deleteuid="${p.uid}">🗑️ Remove</button>` : ''}
-                    </div>
-                </div>`).join('');
-            container.querySelectorAll('[data-edituid]').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const panel = document.getElementById(`lpedit-${btn.dataset.edituid}`);
-                    panel?.classList.toggle('open');
-                    btn.textContent = panel?.classList.contains('open') ? '✖ Cancel' : '✏️ Edit';
-                });
-            });
-            container.querySelectorAll('[data-saveuid]').forEach(btn => { btn.addEventListener('click', () => saveProductEdit(btn.dataset.saveuid)); });
-            container.querySelectorAll('[data-oosuid]').forEach(btn => { btn.addEventListener('click', () => toggleOOS(btn.dataset.oosuid)); });
-            container.querySelectorAll('[data-deleteuid]').forEach(btn => { btn.addEventListener('click', () => deleteProduct(btn.dataset.deleteuid)); });
-        }
-
-        async function saveProductEdit(uid) {
-            const name = document.getElementById(`lpen-${uid}`)?.value.trim();
-            const price = parseFloat(document.getElementById(`lpep-${uid}`)?.value);
-            const units = parseInt(document.getElementById(`lpeu-${uid}`)?.value);
-            const cat = document.getElementById(`lpec-${uid}`)?.value.trim();
-            const imgUrl = document.getElementById(`lpei-${uid}`)?.value.trim();
-            const imgFile = document.getElementById(`lpef-${uid}`);
-            const desc = document.getElementById(`lped-${uid}`)?.value.trim();
-            
-            if (!name || isNaN(price) || isNaN(units) || !cat) { alert('Name, Price, Units and Category are required.'); return; }
-            
-            const existingProd = getAllProducts().find(p => p.uid === uid);
-            let finalImage = existingProd.image;
-
-            if (imgFile && imgFile.files.length > 0) {
-                finalImage = await compressImage(imgFile.files[0], 800, 800);
-            } else if (imgUrl) {
-                finalImage = imgUrl;
-            }
-
-            const defIdx = DEFAULT_PRODUCTS.findIndex(p => p.uid === uid);
-            if (defIdx !== -1) {
-                defaultEdits[uid] = { name, price, units, category: cat, image: finalImage, description: desc };
-                if (units === 0) oosMap[uid] = true;
-                if (units > 0) oosMap[uid] = false;
-                saveDefaultEdits();
-                saveOOSMap();
-                await saveAdminSettingsToFirebase({ defaultEdits, oosMap });
-            } else {
-                const dynIdx = dynamicProducts.findIndex(p => p && p.uid === uid);
-                if (dynIdx !== -1) { 
-                    const dynProd = dynamicProducts[dynIdx];
-                    const updated = { ...dynProd, name, price, units, category: cat, image: finalImage, description: desc };
-                    
-                    if (units === 0) oosMap[uid] = true;
-                    if (units > 0) oosMap[uid] = false;
-                    saveOOSMap();
-
-                    if (isOfflineMode || !_fbHelpers || !dynProd.fbId) {
-                        dynamicProducts[dynIdx] = updated; 
-                        saveDynamic(); 
-                    } else {
-                        try {
-                            const { db, APP_ID, updateDoc, doc } = _fbHelpers;
-                            await updateDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'products', dynProd.fbId), updated);
-                            await saveAdminSettingsToFirebase({ oosMap });
-                        } catch(e) { alert('Failed to save to cloud.'); return; }
-                    }
-                }
-            }
-            buildFilters(); renderProducts(); renderListedProducts();
-        }
-
-        async function toggleOOS(uid) { 
-            oosMap[uid] = !oosMap[uid]; 
-            saveOOSMap(); 
-            await saveAdminSettingsToFirebase({ oosMap });
-            buildFilters(); renderProducts(); renderListedProducts(); 
-        }
-
-        async function deleteProduct(uid) {
-            const ok = await customConfirm('Are you sure you want to permanently remove this product?');
-            if (!ok) return;
-            if (isOfflineMode || !_fbHelpers) {
-                dynamicProducts = dynamicProducts.filter(p => p && p.uid !== uid); saveDynamic();
-            } else {
-                const prod = dynamicProducts.find(p => p && p.uid === uid);
-                if (prod && prod.fbId) {
-                    try {
-                        const { db, APP_ID, deleteDoc, doc } = _fbHelpers;
-                        await deleteDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'products', prod.fbId));
-                    } catch(e) { alert('Failed to delete from cloud.'); return; }
-                } else { dynamicProducts = dynamicProducts.filter(p => p && p.uid !== uid); saveDynamic(); }
-            }
-            buildFilters(); renderProducts(); renderListedProducts();
-        }
-
-        function clearPwdFields() {
-            ['pwdCurrent','pwdNew','pwdConfirm'].forEach(id => { 
-                const el = document.getElementById(id);
-                if(el) el.value = ''; 
-            });
-            const msg = document.getElementById('pwdMsg');
-            if(msg) { msg.className = 'pwd-msg'; msg.textContent = ''; }
-        }
-
-        function handleChangePassword() {
-            const cur = document.getElementById('pwdCurrent')?.value;
-            const nw = document.getElementById('pwdNew')?.value.trim();
-            const conf = document.getElementById('pwdConfirm')?.value.trim();
-            const msg = document.getElementById('pwdMsg');
-            
-            if (cur !== ADMIN_PASS) { if(msg) { msg.className = 'pwd-msg error'; msg.textContent = 'Current password is incorrect.'; } return; }
-            if (!nw) { if(msg) { msg.className = 'pwd-msg error'; msg.textContent = 'New password cannot be empty.'; } return; }
-            if (nw.length > 12) { if(msg) { msg.className = 'pwd-msg error'; msg.textContent = 'Password must be 12 characters or fewer.'; } return; }
-            if (nw !== conf) { if(msg) { msg.className = 'pwd-msg error'; msg.textContent = 'New passwords do not match.'; } return; }
-            
-            ADMIN_PASS = nw;
-            localStorage.setItem('shopify_admin_pass', nw);
-            
-            (async () => {
-                await saveAdminSettingsToFirebase({ password: nw });
-                if(msg) { msg.className = 'pwd-msg success'; msg.textContent = '✓ Password updated successfully!'; }
-                const pc = document.getElementById('pwdCurrent'); if(pc) pc.value = '';
-                const pn = document.getElementById('pwdNew'); if(pn) pn.value = '';
-                const pcf = document.getElementById('pwdConfirm'); if(pcf) pcf.value = '';
-            })();
-        }
-
-        function handleOrderSubmit(e) {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            if(btn) { btn.disabled = true; btn.textContent = 'Placing order…'; }
-            const formData = new FormData(this);
-            const newOrder = {
-                orderId: 'ORD-' + Math.floor(100000 + Math.random() * 900000),
-                date: new Date().toLocaleString(), timestamp: Date.now(),
-                items: [...cart], totalFormatted: fmt(getTotal()),
-                customerName: formData.get('Customer Name'), customerPhone: formData.get('Phone Number'),
-                address: formData.get('Delivery Address'), instructions: formData.get('Special Instructions') || '',
-                status: 'Active', creatorId: currentUser ? currentUser.uid : 'local-user'
-            };
-            
-            (async () => {
-                try {
-                    if (isOfflineMode || !_fbHelpers) {
-                        cloudOrders.unshift(newOrder); saveLocalOrders();
-                    } else {
-                        const { db, APP_ID, addDoc, collection } = _fbHelpers;
-                        await addDoc(collection(db, 'artifacts', APP_ID, 'public', 'data', 'orders'), newOrder);
-                    }
-                    try { await fetch('https://formspree.io/f/xeeplold', { method: 'POST', body: formData, headers: { Accept: 'application/json' } }); } catch(fe) {}
-                    
-                    // Deduct stock from units
-                    const { db, APP_ID, updateDoc, doc } = _fbHelpers;
-                    for (const item of cart) {
-                        const p = dynamicProducts.find(x => x && x.uid === item.uid);
-                        if (p && p.fbId && p.units !== undefined) {
-                            const newUnits = Math.max(0, p.units - item.qty);
-                            try {
-                                await updateDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'products', p.fbId), { units: newUnits });
-                            } catch(e) {}
-                        }
-                    }
-
-                    cart = []; saveCart(); updateCartUI(); renderProducts();
-                    const cv = document.getElementById('checkoutView'); if(cv) cv.style.display = 'none';
-                    const sv = document.getElementById('successView'); if(sv) sv.style.display = 'block';
-                } catch(err) { alert('Network error. Please try again or WhatsApp us directly.'); }
-                if(btn) { btn.disabled = false; btn.textContent = '✦ Confirm Order'; }
-            })();
         }
 
         // ============================================================
@@ -2070,19 +827,73 @@
         document.addEventListener('DOMContentLoaded', () => {
             updateCartUI();
 
+            document.getElementById('authHeaderBtn')?.addEventListener('click', (e) => {
+                if (currentUser && !currentUser.isAnonymous) {
+                    document.getElementById('profileDropdown')?.classList.toggle('show');
+                } else {
+                    openAuthModal();
+                    showAuthView('login');
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                const container = document.getElementById('authDropdownContainer');
+                if (container && !container.contains(e.target)) {
+                    document.getElementById('profileDropdown')?.classList.remove('show');
+                }
+            });
+
+            document.getElementById('menuEditProfileBtn')?.addEventListener('click', () => {
+                document.getElementById('profileDropdown')?.classList.remove('show');
+                openAuthModal();
+                showAuthView('edit_profile');
+            });
+
+            document.getElementById('menuDeleteProfileBtn')?.addEventListener('click', () => {
+                document.getElementById('profileDropdown')?.classList.remove('show');
+                openAuthModal();
+                showAuthView('delete_profile');
+            });
+
+            document.getElementById('menuSignOutBtn')?.addEventListener('click', async () => {
+                document.getElementById('profileDropdown')?.classList.remove('show');
+                if(!_fbHelpers) return;
+                try { 
+                    await _fbHelpers.signOut(_fbHelpers.auth); 
+                    cart = []; saveCart(); updateCartUI(); 
+                } catch(err) { console.error(err); }
+            });
+
+            document.getElementById('closeAuthBtn')?.addEventListener('click', closeAuthModal);
+
+            document.getElementById('showSignup')?.addEventListener('click', (e) => { e.preventDefault(); showAuthView('signup'); });
+            document.getElementById('showReset')?.addEventListener('click', (e) => { e.preventDefault(); showAuthView('reset'); });
+            document.getElementById('showLoginFromSignup')?.addEventListener('click', (e) => { e.preventDefault(); showAuthView('login'); });
+            document.getElementById('showLoginFromReset')?.addEventListener('click', (e) => { e.preventDefault(); showAuthView('login'); });
+
+            // Checkout Steps Handlers
+            document.getElementById('continueToDetailsBtn')?.addEventListener('click', () => {
+                document.getElementById('checkoutStep1').style.display = 'none';
+                document.getElementById('checkoutStep2').style.display = 'block';
+                document.getElementById('checkoutModalTitle').textContent = 'Delivery Details';
+            });
+            document.getElementById('backToSummaryBtn')?.addEventListener('click', () => {
+                document.getElementById('checkoutStep2').style.display = 'none';
+                document.getElementById('checkoutStep1').style.display = 'block';
+                document.getElementById('checkoutModalTitle').textContent = 'Order Summary';
+            });
+
             document.getElementById('ordersHeaderBtn')?.addEventListener('click', openOrders);
             document.getElementById('cartHeaderBtn')?.addEventListener('click', openCart);
             document.getElementById('closeCartBtn')?.addEventListener('click', closeCart);
             document.getElementById('closeCheckoutBtn')?.addEventListener('click', closeCheckout);
             document.getElementById('closeOrdersBtn')?.addEventListener('click', closeOrders);
-            document.getElementById('closeAdminBtn')?.addEventListener('click', closeAdmin);
             document.getElementById('checkoutBtn')?.addEventListener('click', openCheckout);
-            document.getElementById('adminPortalLink')?.addEventListener('click', openAdminGate); 
             
             document.getElementById('drawerOverlay')?.addEventListener('click', closeCart);
             document.getElementById('modalOverlay')?.addEventListener('click', e => { if (e.target === document.getElementById('modalOverlay')) closeCheckout(); });
             document.getElementById('ordersModalOverlay')?.addEventListener('click', e => { if (e.target === document.getElementById('ordersModalOverlay')) closeOrders(); });
-            document.getElementById('adminModalOverlay')?.addEventListener('click', e => { if (e.target === document.getElementById('adminModalOverlay')) closeAdmin(); });
+            document.getElementById('authModalOverlay')?.addEventListener('click', e => { if (e.target === document.getElementById('authModalOverlay')) closeAuthModal(); });
             
             document.getElementById('confirmYesBtn')?.addEventListener('click', () => {
                 document.getElementById('confirmModalOverlay')?.classList.remove('open');
@@ -2092,88 +903,157 @@
                 document.getElementById('confirmModalOverlay')?.classList.remove('open');
                 if (resolveConfirm) resolveConfirm(false);
             });
-            
-            document.getElementById('tabBtnOrders')?.addEventListener('click', () => switchAdminTab('orders'));
-            document.getElementById('tabBtnAddProduct')?.addEventListener('click', () => switchAdminTab('addProduct'));
-            document.getElementById('tabBtnListedProducts')?.addEventListener('click', () => switchAdminTab('listedProducts'));
-            document.getElementById('tabBtnPassword')?.addEventListener('click', () => switchAdminTab('password'));
 
-            document.getElementById('lpSearchInput')?.addEventListener('input', function() {
-                lpSearchQuery = this.value.trim().toLowerCase(); renderListedProducts();
-            });
-
-            // Image Source Toggle
-            document.querySelectorAll('input[name="imgSource"]').forEach(radio => {
-                radio.addEventListener('change', function() {
-                    const urlInput = document.getElementById('imageUrlInput');
-                    const fileInput = document.getElementById('imageFileInput');
-                    if (this.value === 'url') {
-                        urlInput.style.display = 'block'; urlInput.required = true;
-                        fileInput.style.display = 'none'; fileInput.required = false;
-                        fileInput.value = ''; // clear file
+            // AUTH SUBMIT HANDLERS
+            document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                if(!_fbHelpers) return showAuthAlert("Database offline. Cannot login.");
+                try {
+                    await _fbHelpers.signInWithEmailAndPassword(_fbHelpers.auth, e.target.email.value, e.target.password.value);
+                    closeAuthModal();
+                } catch(err) { 
+                    if (err.code === 'auth/invalid-credential' || err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found') {
+                        showAuthAlert('Invalid ID or password');
                     } else {
-                        urlInput.style.display = 'none'; urlInput.required = false;
-                        urlInput.value = ''; // clear url
-                        fileInput.style.display = 'block'; fileInput.required = true;
+                        showAuthAlert('Login Failed: ' + err.message); 
                     }
-                });
-            });
-
-            document.getElementById('setupPw1')?.addEventListener('input', function() {
-                const v = this.value || '';
-                const sc = document.getElementById('setupCharCount'); if(sc) sc.textContent = v.length + ' / 12 characters';
-                const bar = document.getElementById('strengthBar1');
-                const fill = document.getElementById('strengthFill1');
-                if(bar) bar.classList.toggle('show', v.length > 0);
-                const s = pwStrength(v);
-                const pct = Math.round((s / 5) * 100);
-                if(fill) {
-                    fill.style.width = pct + '%';
-                    fill.style.background = s <= 1 ? '#ff6584' : s <= 3 ? '#f5a623' : '#43e0b8';
                 }
             });
 
-            document.getElementById('setupConfirmBtn')?.addEventListener('click', async () => {
-                const pw1 = document.getElementById('setupPw1')?.value || '';
-                const pw2 = document.getElementById('setupPw2')?.value || '';
-                const errEl = document.getElementById('setupErr');
+            document.getElementById('signupForm')?.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                if(!_fbHelpers) return showAuthAlert("Database offline. Cannot signup.");
+                try {
+                    const firstName = e.target.firstName.value.trim();
+                    const lastName = e.target.lastName.value.trim();
+                    
+                    const userCredential = await _fbHelpers.createUserWithEmailAndPassword(_fbHelpers.auth, e.target.email.value, e.target.password.value);
+                    
+                    await _fbHelpers.updateProfile(userCredential.user, {
+                        displayName: `${firstName} ${lastName}`.trim()
+                    });
 
-                if (pw1.length < 4) { if(errEl){ errEl.textContent = 'Password must be at least 4 characters.'; errEl.classList.add('show'); } return; }
-                if (pw1 !== pw2) { if(errEl){ errEl.textContent = 'Passwords do not match.'; errEl.classList.add('show'); } return; }
-                if(errEl) errEl.classList.remove('show');
-
-                const btn = document.getElementById('setupConfirmBtn');
-                if(btn) { btn.disabled = true; btn.textContent = 'Saving…'; }
-
-                ADMIN_PASS = pw1;
-                localStorage.setItem('shopify_admin_pass', pw1);
-                await saveAdminSettingsToFirebase({ password: pw1 });
-
-                if(btn) { btn.disabled = false; btn.textContent = '🔐 Set Password & Enter'; }
-                closeAdminGate(); launchAdminDashboard();
-            });
-
-            document.getElementById('loginConfirmBtn')?.addEventListener('click', () => {
-                const pw = document.getElementById('loginPw')?.value || '';
-                const errEl = document.getElementById('loginErr');
-                if (pw !== ADMIN_PASS) {
-                    if(errEl) { errEl.textContent = 'Incorrect password. Please try again.'; errEl.classList.add('show'); }
-                    const lp = document.getElementById('loginPw'); if(lp) lp.value = '';
-                    setTimeout(() => lp?.focus(), 50); return;
+                    showAuthAlert("Account created successfully!", true);
+                    setTimeout(() => closeAuthModal(), 1500);
+                } catch(err) { 
+                    if (err.code === 'auth/email-already-in-use') {
+                        showAuthAlert('This Email already exists.');
+                    } else {
+                        showAuthAlert('Signup Failed: ' + err.message); 
+                    }
                 }
-                if(errEl) errEl.classList.remove('show');
-                closeAdminGate(); launchAdminDashboard();
             });
 
-            document.getElementById('loginPw')?.addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('loginConfirmBtn')?.click(); });
-            document.getElementById('setupPw2')?.addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('setupConfirmBtn')?.click(); });
+            document.getElementById('resetForm')?.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                if(!_fbHelpers) return showAuthAlert("Database offline.");
+                try {
+                    await _fbHelpers.sendPasswordResetEmail(_fbHelpers.auth, e.target.email.value);
+                    showAuthAlert("Reset email sent! Please check your inbox. If you do not find it in your inbox then kindly check your spam folder also", true);
+                    setTimeout(() => clearAuthAlert(), 2500);
+                } catch(err) { showAuthAlert('Reset Failed: ' + err.message); }
+            });
+            
+            // Profile Edit Handlers
+            document.getElementById('cancelEditProfileBtn')?.addEventListener('click', closeAuthModal);
 
-            document.getElementById('gateSetupCancelBtn')?.addEventListener('click', closeAdminGate);
-            document.getElementById('gateLoginCancelBtn')?.addEventListener('click', closeAdminGate);
+            document.getElementById('editProfileForm')?.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                if (!_fbHelpers || !currentUser) return;
+                const btn = document.getElementById('saveProfileBtn');
+                if(btn) { btn.disabled = true; btn.textContent = 'Saving...'; }
+                try {
+                    const firstName = document.getElementById('editFirstName').value.trim();
+                    const lastName = document.getElementById('editLastName').value.trim();
+                    const newName = `${firstName} ${lastName}`.trim();
+                    
+                    await _fbHelpers.updateProfile(currentUser, { displayName: newName });
+                    
+                    const authBtn = document.getElementById('authHeaderBtn');
+                    if(authBtn) authBtn.innerHTML = `👤 ${escHtml(firstName || currentUser.email.split('@')[0])} ▾`;
+                    
+                    // NEW: Instantly update the dropdown menu text
+                    const dropName = document.getElementById('dropdownName');
+                    if(dropName) dropName.textContent = newName;
+                    
+                    showAuthAlert("Profile updated successfully!", true);
+                    setTimeout(() => closeAuthModal(), 1500);
+                } catch(err) {
+                    showAuthAlert("Failed to update profile: " + err.message);
+                }
+                if(btn) { btn.disabled = false; btn.textContent = 'Save Changes'; }
+            });
 
-            document.getElementById('addProductForm')?.addEventListener('submit', handleAddProduct);
-            document.getElementById('orderForm')?.addEventListener('submit', handleOrderSubmit);
-            document.getElementById('changePwdBtn')?.addEventListener('click', handleChangePassword);
+            // Delete Profile Handlers
+            document.getElementById('cancelDeleteProfileBtn')?.addEventListener('click', closeAuthModal);
+
+            document.getElementById('deleteProfileForm')?.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                if (!_fbHelpers || !currentUser) return;
+                
+                const pw = document.getElementById('deleteProfilePw').value;
+                const btn = document.getElementById('confirmDeleteProfileBtn');
+                if(btn) { btn.disabled = true; btn.textContent = 'Deleting...'; }
+                
+                try {
+                    const credential = _fbHelpers.EmailAuthProvider.credential(currentUser.email, pw);
+                    await _fbHelpers.reauthenticateWithCredential(currentUser, credential);
+                    await _fbHelpers.deleteUser(currentUser);
+                    showAuthAlert("Profile deleted successfully.", true);
+                    setTimeout(() => closeAuthModal(), 1500);
+                } catch(err) {
+                    if (err.code === 'auth/invalid-credential' || err.code === 'auth/wrong-password') {
+                        showAuthAlert('Incorrect password. Profile not deleted.');
+                    } else {
+                        showAuthAlert("Failed to delete profile: " + err.message);
+                    }
+                }
+                if(btn) { btn.disabled = false; btn.textContent = 'Delete Permanently'; }
+            });
+
+            document.getElementById('orderForm')?.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const btn = document.getElementById('submitBtn');
+                if(btn) { btn.disabled = true; btn.textContent = 'Placing order…'; }
+                const formData = new FormData(this);
+                const newOrder = {
+                    orderId: 'ORD-' + Math.floor(100000 + Math.random() * 900000),
+                    date: new Date().toLocaleString(), timestamp: Date.now(),
+                    items: [...cart], totalFormatted: fmt(getTotal()),
+                    customerName: formData.get('Customer Name'), customerPhone: formData.get('Phone Number'),
+                    customerEmail: currentUser && !currentUser.isAnonymous ? currentUser.email : 'Guest',
+                    address: formData.get('Delivery Address'), instructions: formData.get('Special Instructions') || '',
+                    status: 'Active', creatorId: currentUser && !currentUser.isAnonymous ? currentUser.uid : 'local-user'
+                };
+                
+                (async () => {
+                    try {
+                        if (isOfflineMode || !_fbHelpers) {
+                            cloudOrders.unshift(newOrder); saveLocalOrders();
+                        } else {
+                            const { db, APP_ID, addDoc, collection } = _fbHelpers;
+                            await addDoc(collection(db, 'artifacts', APP_ID, 'public', 'data', 'orders'), newOrder);
+                        }
+                        try { await fetch('https://formspree.io/f/xeeplold', { method: 'POST', body: formData, headers: { Accept: 'application/json' } }); } catch(fe) {}
+                        
+                        const { db, APP_ID, updateDoc, doc } = _fbHelpers || {};
+                        if(db) {
+                            for (const item of cart) {
+                                const p = dynamicProducts.find(x => x && x.uid === item.uid);
+                                if (p && p.fbId && p.units !== undefined) {
+                                    const newUnits = Math.max(0, p.units - item.qty);
+                                    try { await updateDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'products', p.fbId), { units: newUnits }); } catch(e) {}
+                                }
+                            }
+                        }
+
+                        cart = []; saveCart(); updateCartUI(); renderProducts();
+                        const cv = document.getElementById('checkoutView'); if(cv) cv.style.display = 'none';
+                        const sv = document.getElementById('successView'); if(sv) sv.style.display = 'block';
+                    } catch(err) { alert('Network error. Please try again or WhatsApp us directly.'); }
+                    if(btn) { btn.disabled = false; btn.textContent = '✦ Confirm Order'; }
+                })();
+            });
         });
     </script>
 </body>
