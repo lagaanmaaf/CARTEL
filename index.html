@@ -84,10 +84,6 @@
         .modal-content { background: white; border-radius: 24px; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; transform: scale(0.95) translateY(20px); transition: transform 0.3s cubic-bezier(0.16,1,0.3,1); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
         .modal-overlay.open .modal-content { transform: scale(1) translateY(0); }
 
-        .drawer-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(4px); z-index: 300; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
-        .drawer-overlay.open { opacity: 1; pointer-events: all; }
-        .cart-drawer { position: fixed; top: 0; right: 0; height: 100%; width: 100%; max-width: 420px; background: white; z-index: 301; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); display: flex; flex-direction: column; box-shadow: -10px 0 30px rgba(0,0,0,0.1); }
-        .cart-drawer.open { transform: translateX(0); }
         .auth-alert.show { display: block; animation: fadeIn 0.3s ease; }
         .profile-dropdown.show { display: flex; animation: fadeIn 0.2s ease; }
 
@@ -156,7 +152,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between h-20 gap-4 lg:gap-8">
                     <!-- Logo -->
-                    <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0); document.getElementById('storeCartContent').classList.add('hidden'); document.getElementById('storeMainContent').classList.remove('hidden');">
                         <div class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-lg shadow-brand-500/30">C</div>
                         <div>
                             <span class="font-black text-2xl tracking-tight text-dark hidden sm:block leading-none">CARTEL</span>
@@ -204,11 +200,11 @@
                             <span class="hidden lg:block text-sm font-semibold text-dark">Orders</span>
                         </button>
 
-                        <!-- Cart -->
+                        <!-- Cart (ShopLux Style SVG) -->
                         <button id="cartHeaderBtn" class="p-2 text-slate-600 hover:text-brand-500 transition-colors rounded-full hover:bg-slate-100 relative flex items-center gap-2 group">
-                            <div class="relative">
-                                <i class="ph ph-shopping-cart-simple text-2xl group-hover:scale-110 transition-transform"></i>
-                                <span id="cartCount" class="absolute -top-1 -right-1 bg-brand-500 text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center border-2 border-white scale-0 transition-transform duration-300">0</span>
+                            <div class="relative flex items-center justify-center p-1">
+                                <svg class="w-[22px] h-[22px] group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                                <span id="cartCount" class="absolute -top-1 -right-2 bg-brand-500 text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center border-2 border-white scale-0 transition-transform duration-300">0</span>
                             </div>
                         </button>
                     </div>
@@ -216,8 +212,8 @@
             </div>
         </header>
 
-        <!-- Main Content -->
-        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Main Product Listing Content -->
+        <main id="storeMainContent" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <!-- Filters & Products -->
             <section class="mb-16 opacity-0 animate-slide-up" style="animation-delay: 0.1s;">
                 <div class="flex items-center justify-between mb-8 flex-wrap gap-4">
@@ -250,6 +246,50 @@
                     <div><h4 class="font-bold text-dark mb-1">Flexible Payments</h4><p class="text-sm text-slate-500">Offline & Online Options</p></div>
                 </div>
             </section>
+        </main>
+
+        <!-- New Cart Page View -->
+        <main id="storeCartContent" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-[60vh]">
+            <div class="border-b border-slate-200 pb-6 mb-8 bg-slate-50 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 pt-6">
+                <h1 class="text-3xl font-bold text-dark font-sans">My Bag <span id="cartItemCount" class="text-slate-500 font-normal text-xl ml-2 tracking-tight">(0 items)</span></h1>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8">
+                <!-- Cart Items List -->
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="font-semibold text-dark">Items</span>
+                        <button onclick="clearCart()" class="text-sm text-slate-500 hover:text-brand-500 transition-colors font-medium">Clear all</button>
+                    </div>
+                    <div id="cartItemsList"></div>
+                </div>
+                
+                <!-- Order Summary -->
+                <div id="orderSummaryBox">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 sticky top-28 shadow-sm">
+                        <h3 class="font-bold text-lg text-dark mb-5">Order Summary</h3>
+                        <div class="flex justify-between text-sm mb-4">
+                            <span class="text-slate-500">Subtotal (<span id="summaryCount">0</span> items)</span>
+                            <span id="summarySubtotal" class="font-medium text-dark">₹0</span>
+                        </div>
+                        <div class="flex justify-between text-sm mb-4">
+                            <span class="text-slate-500">Shipping</span>
+                            <span id="summaryShipping" class="font-semibold text-brand-600">Free</span>
+                        </div>
+                        <hr class="border-slate-100 my-4" />
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="font-bold text-dark">Total</span>
+                            <span id="summaryTotal" class="font-black text-xl text-dark">₹0</span>
+                        </div>
+                        <button id="checkoutBtn" class="w-full bg-brand-500 text-white font-bold py-3.5 rounded-xl hover:bg-brand-600 transition-colors shadow-lg shadow-brand-500/20 flex items-center justify-center gap-2">
+                            Checkout <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+                        </button>
+                        <button onclick="closeCart()" class="w-full bg-transparent border-none text-slate-500 font-semibold py-3 mt-3 rounded-xl hover:bg-slate-50 hover:text-dark transition-colors text-sm">
+                            Continue Shopping
+                        </button>
+                    </div>
+                </div>
+            </div>
         </main>
 
         <!-- Footer -->
@@ -472,26 +512,6 @@
     <!-- END ADMIN PORTAL VIEW -->
 
     <!-- Global Modals / Overlays -->
-    <!-- Cart Drawer -->
-    <div id="drawerOverlay" class="drawer-overlay"></div>
-    <div id="cartDrawer" class="cart-drawer">
-        <div class="flex items-center justify-between p-6 border-b border-slate-100">
-            <h2 class="text-xl font-bold text-dark flex items-center gap-2">
-                <i class="ph ph-shopping-bag text-2xl text-brand-500"></i> Shopping Cart
-            </h2>
-            <button id="closeCartBtn" class="p-2 text-slate-400 hover:text-dark hover:bg-slate-100 rounded-full transition"><i class="ph ph-x text-xl"></i></button>
-        </div>
-        <div id="cartBody" class="flex-1 overflow-y-auto p-6 flex flex-col gap-4 bg-slate-50/50"></div>
-        <div id="cartFooter" class="border-t border-slate-100 p-6 bg-white" style="display:none;">
-            <div class="flex justify-between items-end mb-6">
-                <span class="text-lg font-bold text-dark">Grand Total</span>
-                <span id="grandTotal" class="text-2xl font-black text-brand-600">₹0</span>
-            </div>
-            <button id="checkoutBtn" class="w-full bg-dark text-white font-bold py-4 rounded-2xl hover:bg-slate-800 transition-colors shadow-lg shadow-dark/20 flex items-center justify-center gap-2">
-                Proceed to Checkout <i class="ph ph-arrow-right"></i>
-            </button>
-        </div>
-    </div>
 
     <!-- Auth Modal -->
     <div id="authModalOverlay" class="modal-overlay">
@@ -673,7 +693,7 @@
 
         // --- Custom Confirm Bypass (Always True) ---
         function customConfirm(message) {
-            return Promise.resolve(true); // Directly proceed without confirmation modal
+            return Promise.resolve(true); 
         }
 
         // --- State Management ---
@@ -691,6 +711,12 @@
         function getCartItem(uid) { return cart.find(i => i && i.uid === uid); }
         function getTotal() { return cart.reduce((s, i) => s + (i.price || 0) * (i.qty || 0), 0); }
         function getTotalQty() { return cart.reduce((s, i) => s + (i.qty || 0), 0); }
+
+        window.clearCart = function() {
+            cart = [];
+            saveCart(); updateCartUI(); renderCartPage();
+            showToast('Cart cleared');
+        };
 
         let cloudOrders = safeParseStorage('shopify_orders_local', []);
         let isOfflineMode = true;
@@ -927,7 +953,7 @@
             }
 
             if (ex) { ex.qty++; } else { cart.push({ uid, name: p.name, price: p.price, image: p.image, qty: 1 }); }
-            saveCart(); updateCartUI(); renderCartDrawer();
+            saveCart(); updateCartUI(); renderCartPage();
             showToast(`Added ${escHtml(p.name)} to cart!`);
         }
 
@@ -940,12 +966,12 @@
             }
             item.qty += delta;
             if (item.qty <= 0) cart = cart.filter(i => i && i.uid !== uid);
-            saveCart(); updateCartUI(); renderCartDrawer();
+            saveCart(); updateCartUI(); renderCartPage();
         }
 
         function removeItem(uid) {
             cart = cart.filter(i => i && i.uid !== uid);
-            saveCart(); updateCartUI(); renderCartDrawer();
+            saveCart(); updateCartUI(); renderCartPage();
         }
 
         function updateCartUI() {
@@ -959,49 +985,73 @@
                     badge.classList.add('scale-0'); badge.classList.remove('scale-100');
                 }
             }
-            const gt = document.getElementById('grandTotal');
-            if(gt) gt.textContent = fmt(getTotal());
-            const cf = document.getElementById('cartFooter');
-            if(cf) cf.style.display = qty > 0 ? 'block' : 'none';
+            
+            const cartItemCount = document.getElementById('cartItemCount');
+            if(cartItemCount) cartItemCount.textContent = `(${qty} item${qty !== 1 ? 's' : ''})`;
+            
+            const summaryCount = document.getElementById('summaryCount');
+            if(summaryCount) summaryCount.textContent = qty;
+            
+            const subtotal = getTotal();
+            const gtSub = document.getElementById('summarySubtotal');
+            if(gtSub) gtSub.textContent = fmt(subtotal);
+            
+            const gtTotal = document.getElementById('summaryTotal');
+            if(gtTotal) gtTotal.textContent = fmt(subtotal);
+
+            const summaryBox = document.getElementById('orderSummaryBox');
+            if(summaryBox) summaryBox.style.display = qty > 0 ? 'block' : 'none';
         }
 
-        function renderCartDrawer() {
-            const body = document.getElementById('cartBody');
+        function renderCartPage() {
+            const body = document.getElementById('cartItemsList');
             if(!body) return;
             if (!cart.length) {
                 body.innerHTML = `
-                    <div class="flex flex-col items-center justify-center h-full text-slate-400 py-12">
-                        <i class="ph ph-shopping-cart-simple text-6xl mb-4 text-slate-200"></i>
-                        <p class="font-medium text-lg text-slate-500">Your cart is empty</p>
-                        <p class="text-sm mt-1 text-center">Add some premium tech to get started.</p>
-                        <button onclick="closeCart()" class="mt-6 px-6 py-2 bg-white border border-slate-200 text-slate-600 font-semibold rounded-full hover:bg-slate-50 transition">Start Shopping</button>
+                    <div class="flex flex-col items-center justify-center h-full text-slate-400 py-16 bg-white border border-slate-200 rounded-2xl shadow-sm text-center">
+                        <svg class="w-16 h-16 text-slate-300 mb-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                        <h3 class="text-xl font-bold text-dark mb-2">Your bag is empty</h3>
+                        <p class="font-medium text-sm text-slate-500 mb-6">Add some premium tech to get started.</p>
+                        <button onclick="closeCart()" class="px-6 py-3 bg-dark border border-slate-200 text-white font-semibold rounded-xl hover:bg-slate-800 transition">Start Shopping</button>
                     </div>`;
                 return;
             }
+            
             body.innerHTML = cart.map(item => `
-                <div class="flex gap-4 animate-fade-in bg-white p-3 rounded-2xl border border-slate-100 shadow-sm relative">
-                    <button onclick="removeItem('${item.uid}')" class="absolute -top-2 -right-2 w-6 h-6 bg-white border border-slate-200 text-slate-400 rounded-full flex items-center justify-center hover:text-red-500 hover:border-red-200 transition shadow-sm z-10"><i class="ph ph-x text-xs"></i></button>
-                    <div class="w-20 h-20 bg-slate-50 rounded-xl p-2 flex-shrink-0 border border-slate-50 flex items-center justify-center">
+                <div class="flex items-center gap-4 p-4 bg-white border border-slate-200 rounded-xl mb-3 shadow-sm hover:border-brand-200 transition-colors">
+                    <div class="w-20 h-20 bg-slate-50 rounded-lg p-2 flex-shrink-0 border border-slate-100 flex items-center justify-center">
                         <img src="${item.image}" alt="${escHtml(item.name)}" class="w-full h-full object-contain mix-blend-multiply">
                     </div>
-                    <div class="flex-1 flex flex-col justify-between py-1">
-                        <div>
-                            <h4 class="text-sm font-semibold text-dark leading-tight mb-1 line-clamp-2">${escHtml(item.name)}</h4>
-                        </div>
-                        <div class="flex items-center justify-between mt-2">
-                            <span class="font-bold text-brand-600">${fmt(item.price)}</span>
-                            <div class="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-lg px-2 py-1">
-                                <button onclick="changeQty('${item.uid}', -1)" class="text-slate-500 hover:text-dark transition"><i class="ph ph-minus text-xs"></i></button>
-                                <span class="text-xs font-bold w-4 text-center">${item.qty}</span>
-                                <button onclick="changeQty('${item.uid}', 1)" class="text-slate-500 hover:text-dark transition"><i class="ph ph-plus text-xs"></i></button>
-                            </div>
-                        </div>
+                    <div class="flex-1 min-w-0">
+                        <h4 class="text-sm font-semibold text-dark leading-tight mb-1 truncate">${escHtml(item.name)}</h4>
+                        <div class="text-xs text-slate-500">${fmt(item.price)} each</div>
                     </div>
+                    <div class="flex items-center border-[1.5px] border-slate-200 rounded-full overflow-hidden shrink-0">
+                        <button onclick="changeQty('${item.uid}', -1)" class="w-8 h-8 flex items-center justify-center text-slate-600 hover:bg-slate-100 transition bg-transparent border-none outline-none"><i class="ph ph-minus text-xs"></i></button>
+                        <span class="w-8 text-center text-sm font-semibold text-dark">${item.qty}</span>
+                        <button onclick="changeQty('${item.uid}', 1)" class="w-8 h-8 flex items-center justify-center text-slate-600 hover:bg-slate-100 transition bg-transparent border-none outline-none"><i class="ph ph-plus text-xs"></i></button>
+                    </div>
+                    <div class="text-right min-w-[80px]">
+                        <div class="font-bold text-dark">${fmt(item.price * item.qty)}</div>
+                    </div>
+                    <button onclick="removeItem('${item.uid}')" class="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-full transition ml-2 border-none bg-transparent">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+                    </button>
                 </div>`).join('');
         }
 
-        function openCart() { renderCartDrawer(); document.getElementById('cartDrawer').classList.add('open'); document.getElementById('drawerOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; }
-        function closeCart() { document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('drawerOverlay').classList.remove('open'); document.body.style.overflow = ''; }
+        window.openCart = function() { 
+            renderCartPage(); 
+            document.getElementById('storeMainContent').classList.add('hidden');
+            document.getElementById('storeCartContent').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        window.closeCart = function() { 
+            document.getElementById('storeCartContent').classList.add('hidden');
+            document.getElementById('storeMainContent').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
         // Checkout Logic
         function openCheckout() {
@@ -1010,7 +1060,6 @@
                 showAuthAlert("Please log in to proceed to checkout.");
                 return;
             }
-            closeCart();
             
             let summaryHTML = ''; let summaryText = '';
             cart.forEach(item => {
@@ -1623,8 +1672,6 @@
             renderProducts();
 
             // Storefront Actions
-            
-            // ---> FIX 1: Search Bar Logic added here <---
             document.getElementById('storeSearchInput')?.addEventListener('input', function(e) {
                 storeSearchQuery = e.target.value.trim().toLowerCase();
                 renderProducts();
@@ -1649,8 +1696,6 @@
                 if (window.scrollY > 20) header.classList.add('shadow-md'); else header.classList.remove('shadow-md');
             });
 
-            // ---> FIX 2: Admin Portal Button completely removed. <---
-
             document.getElementById('menuEditProfileBtn').addEventListener('click', () => { document.getElementById('profileDropdown').classList.add('hidden'); openAuthModal(); showAuthView('edit_profile'); });
             document.getElementById('menuDeleteProfileBtn').addEventListener('click', () => { document.getElementById('profileDropdown').classList.add('hidden'); openAuthModal(); showAuthView('delete_profile'); });
             document.getElementById('menuSignOutBtn').addEventListener('click', async () => {
@@ -1661,8 +1706,6 @@
 
             // Modals Close
             document.getElementById('closeAuthBtn').addEventListener('click', closeAuthModal);
-            document.getElementById('closeCartBtn').addEventListener('click', closeCart);
-            document.getElementById('drawerOverlay').addEventListener('click', closeCart);
             document.getElementById('closeCheckoutBtn').addEventListener('click', closeCheckout);
             document.getElementById('closeOrdersBtn').addEventListener('click', closeOrders);
             document.getElementById('checkoutModalOverlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeCheckout(); });
@@ -1696,7 +1739,6 @@
             document.getElementById('closeAdminBtn')?.addEventListener('click', () => {
                 document.getElementById('admin-view').style.display = 'none';
                 document.getElementById('storefront-view').style.display = 'block';
-                // Reset admin gate safely
                 document.getElementById('adminGate').classList.remove('open');
                 document.getElementById('adminGate').style.display = 'none';
                 document.getElementById('adminDashboard').style.display = 'none';
